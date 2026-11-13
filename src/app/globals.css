@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root, [data-skin="phosphor"] {
+  --bg: #121315;
+  --surface: #1a1b1e;
+  --surface-2: #222327;
+  --surface-hover: #2a2b30;
+  --paper: #1c1d20;
+  --line: #2b2c31;
+  --line-strong: #3b3c42;
+  --fg: #ece8df;
+  --muted: #9b978d;
+  --accent: #ffb547;
+  --on-accent: #1a1206;
+  --accent-soft: rgba(255, 181, 71, 0.14);
+  --accent-border: rgba(255, 181, 71, 0.35);
+  --grid: transparent;
+  --nav-bg: rgba(18, 19, 21, 0.88);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --badge-bg: rgba(255, 181, 71, 0.12);
+  --badge-text: #ffb547;
+  --pulse-dot: #10b981;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-skin="ivory"] {
+  --bg: #f5f0e8;
+  --surface: #ede6da;
+  --surface-2: #e3dacb;
+  --surface-hover: #dbd0bf;
+  --paper: #fbf8f2;
+  --line: #d9cfbe;
+  --line-strong: #b6a992;
+  --fg: #1f1b17;
+  --muted: #665e52;
+  --accent: #8a2432;
+  --on-accent: #fbf7f0;
+  --accent-soft: rgba(138, 36, 50, 0.12);
+  --accent-border: rgba(138, 36, 50, 0.35);
+  --grid: transparent;
+  --nav-bg: rgba(245, 240, 232, 0.92);
+  --card-shadow: 0 8px 24px 0 rgba(40, 30, 20, 0.08);
+  --badge-bg: rgba(138, 36, 50, 0.12);
+  --badge-text: #8a2432;
+  --pulse-dot: #8a2432;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-skin="riso"] {
+  --bg: #f3f3f1;
+  --surface: #e9e8ef;
+  --surface-2: #dedde9;
+  --surface-hover: #d3d1e2;
+  --paper: #fafaf8;
+  --line: #cfcde2;
+  --line-strong: #aba7cc;
+  --fg: #1d2a8a;
+  --muted: #535e9e;
+  --accent: #c81e74;
+  --on-accent: #ffffff;
+  --accent-soft: rgba(200, 30, 116, 0.12);
+  --accent-border: rgba(200, 30, 116, 0.4);
+  --grid: rgba(29, 42, 138, 0.08);
+  --nav-bg: rgba(243, 243, 241, 0.92);
+  --card-shadow: 0 8px 24px 0 rgba(29, 42, 138, 0.1);
+  --badge-bg: rgba(200, 30, 116, 0.12);
+  --badge-text: #c81e74;
+  --pulse-dot: #c81e74;
+  color-scheme: light;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-hover: var(--surface-hover);
+  --color-paper: var(--paper);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-border: var(--accent-border);
+  --color-badge-bg: var(--badge-bg);
+  --color-badge-text: var(--badge-text);
+  --color-pulse: var(--pulse-dot);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Brutalist Archivo Display Headings */
+.font-display {
+  font-family: 'Archivo', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Riso Blueprint Grid */
+[data-skin="riso"] body {
+  background-image: 
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Glassmorphic blur */
+.glass {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
