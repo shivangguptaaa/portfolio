@@ -37,10 +37,10 @@ export function Hero({ onOpenTerminal }: HeroProps) {
   };
 
   return (
-    <section className="relative mx-auto max-w-6xl px-4 pt-4 pb-14 sm:px-6 md:pt-6 md:pb-20">
+    <section className="relative mx-auto max-w-[1360px] px-4 pt-4 pb-14 sm:px-6 md:pt-6 md:pb-20">
       {/* 1. Interactive ASCII Matrix Glyph Canvas Header */}
-      <div className="w-full border-b border-[var(--line)] pb-3 mb-8">
-        <InteractiveGlyph text="Shivang Gupta" isHero={true} />
+      <div className="w-full border-b border-[var(--line)] pb-4 mb-8">
+        <InteractiveGlyph words={["SHIVANG", "GUPTA"]} isHero={true} id="hero-glyph" />
       </div>
 
       {/* 2. Hero Grid: Main Headline + Rotated Profile ID Card */}
@@ -52,14 +52,14 @@ export function Hero({ onOpenTerminal }: HeroProps) {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-[var(--muted)] max-w-2xl font-sans">
-            I’m <strong className="text-[var(--fg)]">Shivang Gupta</strong>, a computer science engineer at JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>) and Top 10 Smart India Hackathon Finalist. I build production cloud engines, clinical biomedical EEG systems, and protocol-grounded RAG architectures with strict perimeter boundaries.
+            I’m <strong className="text-[var(--fg)]">Shivang Gupta</strong>, a final-year computer science engineering student at JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>) and Top 10 Smart India Hackathon Finalist. I build production-grade full-stack web platforms, cloud architectures, and automated data pipelines.
           </p>
 
           {/* Action CTAs */}
           <div className="mt-8 flex flex-wrap items-center gap-3 font-mono text-sm font-medium">
             <a
               href="#builds-showcase"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-[var(--on-accent)] font-bold shadow-md hover:bg-[var(--fg)] hover:text-[var(--bg)] transition-all duration-200 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-[var(--on-accent)] font-bold shadow-md hover:bg-[var(--fg)] hover:text-[var(--bg)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <span>See the builds</span>
               <ArrowRight className="h-4 w-4" />
@@ -74,15 +74,6 @@ export function Hero({ onOpenTerminal }: HeroProps) {
               <span>Résumé</span>
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
-
-            <button
-              type="button"
-              onClick={onOpenTerminal}
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface-2)] px-4 py-3 text-[var(--muted)] hover:text-[var(--fg)] hover:border-[var(--accent)] transition-all duration-200"
-            >
-              <Terminal className="h-3.5 w-3.5" />
-              <span>CLI (~ `)</span>
-            </button>
           </div>
         </div>
 
@@ -90,15 +81,21 @@ export function Hero({ onOpenTerminal }: HeroProps) {
         <div className="lg:col-span-5 flex justify-center lg:justify-end">
           <aside
             aria-label="Profile card"
-            className="relative w-full max-w-[370px] rounded-2xl border border-[var(--line-strong)] bg-[var(--surface)] p-6 shadow-2xl transition-transform duration-300 hover:rotate-0 rotate-[-2.5deg]"
+            className="relative w-full max-w-[380px] rounded-2xl border border-[var(--line-strong)] bg-[var(--surface)] p-6 pt-7 shadow-2xl transition-transform duration-300 hover:rotate-0 rotate-[-2.5deg]"
             style={{
               boxShadow: "0 1px 0 var(--line), 0 30px 60px -32px var(--card-shadow, rgba(0,0,0,0.5))"
             }}
           >
+            {/* Lanyard Punch Hole Slot */}
+            <div
+              aria-hidden="true"
+              className="absolute top-2.5 left-1/2 -translate-x-1/2 w-14 h-2 rounded-full bg-[var(--bg)] border border-[var(--line-strong)] shadow-inner"
+            />
+
             {/* Card Head */}
             <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-[var(--muted)] font-semibold border-b border-[var(--line)] pb-3">
               <span>ENGINEER</span>
-              <span className="text-[var(--accent)]">JECRC · CSE ’26</span>
+              <span className="text-[var(--accent)]">JECRC · CSE ’27</span>
             </div>
 
             {/* Card Main: Avatar + Name */}
@@ -171,22 +168,8 @@ export function Hero({ onOpenTerminal }: HeroProps) {
                 <span>{copied ? "Copied!" : "Copy email"}</span>
               </button>
 
-              {/* Decorative Barcode SVG */}
-              <div className="flex items-center gap-[2px] opacity-70" aria-hidden="true">
-                <span className="h-5 w-[1px] bg-[var(--fg)]" />
-                <span className="h-5 w-[3px] bg-[var(--fg)]" />
-                <span className="h-5 w-[1px] bg-[var(--fg)]" />
-                <span className="h-5 w-[2px] bg-[var(--fg)]" />
-                <span className="h-5 w-[4px] bg-[var(--fg)]" />
-                <span className="h-5 w-[1px] bg-[var(--fg)]" />
-                <span className="h-5 w-[2px] bg-[var(--fg)]" />
-                <span className="h-5 w-[1px] bg-[var(--fg)]" />
-                <span className="h-5 w-[3px] bg-[var(--fg)]" />
-                <span className="h-5 w-[2px] bg-[var(--fg)]" />
-                <span className="h-5 w-[1px] bg-[var(--fg)]" />
-                <span className="h-5 w-[3px] bg-[var(--fg)]" />
-                <span className="h-5 w-[1px] bg-[var(--fg)]" />
-              </div>
+              {/* Decorative Barcode */}
+              <span className="barcode" aria-hidden="true" />
             </div>
           </aside>
         </div>

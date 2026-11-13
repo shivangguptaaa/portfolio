@@ -106,7 +106,7 @@ export function ContactSection() {
             </h4>
             <ul className="mt-3 space-y-2 text-xs text-[var(--muted)]">
               <li>• Response within 24 hours</li>
-              <li>• Open for full-time AI/ML, backend, or neurotech positions</li>
+              <li>• Open for full-time AI/ML, backend, or full-stack software roles</li>
               <li>• Available for engineering consultations</li>
             </ul>
           </div>

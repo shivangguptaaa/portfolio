@@ -8,7 +8,7 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
 import { InteractiveGlyph } from "@/components/InteractiveGlyph";
 import { PROJECTS } from "@/data/portfolioData";
-import { Search, LayoutGrid, List, ExternalLink, GitBranch, Shield, ArrowUpRight, Zap, Activity, Cpu, Sparkles } from "lucide-react";
+import { Search, LayoutGrid, List, ExternalLink, GitBranch, Shield, ArrowUpRight, ArrowRight, Zap, Activity, Cpu, Sparkles } from "lucide-react";
 
 export default function BuildsPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -19,9 +19,9 @@ export default function BuildsPage() {
 
   const categories = [
     { id: "all", label: "All", count: PROJECTS.length },
-    { id: "ai", label: "AI & ML", count: 3 },
+    { id: "ai", label: "Machine Learning", count: 3 },
     { id: "fullstack", label: "Full-Stack", count: 1 },
-    { id: "neurotech", label: "Neurotech", count: 1 },
+    { id: "cognitive", label: "Cognitive ML", count: 1 },
   ];
 
   const filteredProjects = PROJECTS.filter((p) => {
@@ -34,7 +34,7 @@ export default function BuildsPage() {
     if (selectedCategory === "all") return matchesSearch;
     if (selectedCategory === "ai") return matchesSearch && (p.id === "signalscale" || p.id === "digit-recognition" || p.id === "focus-jumper");
     if (selectedCategory === "fullstack") return matchesSearch && p.id === "aegis";
-    if (selectedCategory === "neurotech") return matchesSearch && p.id === "focus-jumper";
+    if (selectedCategory === "cognitive") return matchesSearch && p.id === "focus-jumper";
     return matchesSearch;
   });
 
@@ -45,24 +45,14 @@ export default function BuildsPage() {
         onToggleTerminal={() => setIsTerminalOpen(!isTerminalOpen)}
       />
 
-      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-8 sm:px-6">
-        {/* Return Breadcrumb */}
-        <div className="mb-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >
-            <span>← Return to home</span>
-          </Link>
-        </div>
-
+      <main className="flex-1 mx-auto max-w-[1360px] w-full px-4 py-8 sm:px-6">
         {/* Header with Interactive Canvas Glyph */}
         <div className="border-b border-[var(--line)] pb-4 mb-8">
-          <InteractiveGlyph text="Builds" subtext="FLAGSHIP ENGINES • OPEN ARCHITECTURES & BOUNDARIES" />
+          <InteractiveGlyph text="BUILDS" subtext="FLAGSHIP PLATFORMS • OPEN ARCHITECTURES & BOUNDARIES" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
               <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
-                Everything I have engineered, opened up. Live production clouds, neurotech DSP, and strict perimeter limits.
+                Everything I have engineered, opened up. Full-stack web architectures, machine learning models, and strict perimeter limits.
               </p>
             </div>
             <span className="font-mono text-xs text-[var(--accent)] font-bold">
@@ -143,76 +133,82 @@ export default function BuildsPage() {
               >
                 <div>
                   {/* Visual Header / Banner (.tile-media) */}
-                  <div className="relative h-36 w-full rounded-2xl border border-[var(--line)] bg-[var(--surface-2)] overflow-hidden mb-5 p-4 flex flex-col justify-between group-hover:border-[var(--accent)] transition-colors">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[var(--accent)]">
-                        {p.domain}
-                      </span>
-                      <span className="rounded-full bg-[var(--surface)] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[var(--fg)] border border-[var(--line)]">
-                        {p.badge}
-                      </span>
+                  <Link href={`/builds/${p.id}`} className="block">
+                    <div className="relative h-36 w-full rounded-2xl border border-[var(--line)] bg-[var(--surface-2)] overflow-hidden mb-5 p-4 flex flex-col justify-between group-hover:border-[var(--accent)] transition-colors cursor-pointer">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[var(--accent)]">
+                          {p.domain}
+                        </span>
+                        <span className="rounded-full bg-[var(--surface)] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[var(--fg)] border border-[var(--line)]">
+                          {p.badge}
+                        </span>
+                      </div>
+
+                      {/* Graphic Elements based on project */}
+                      {p.id === "aegis" && (
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <Activity className="h-5 w-5 animate-pulse" />
+                          </div>
+                          <div>
+                            <span className="font-mono text-xs font-bold text-[var(--fg)] block">GDACS Live Satellite Stream</span>
+                            <span className="font-mono text-[10px] text-[var(--muted)]">NDMA & FEMA Protocol-Grounded RAG</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {p.id === "focus-jumper" && (
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-xl bg-[var(--surface-2)] border border-[var(--line)] flex items-center justify-center text-[var(--accent)]">
+                            <Cpu className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <span className="font-mono text-xs font-bold text-[var(--fg)] block">EEG Signal Analysis · Swaarogym</span>
+                            <span className="font-mono text-[10px] text-[var(--muted)]">Theta/Beta Ratio · Welch PSD Extraction</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {p.id === "signalscale" && (
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                            <Zap className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <span className="font-mono text-xs font-bold text-[var(--fg)] block">Predictive Lead Scoring Engine</span>
+                            <span className="font-mono text-[10px] text-[var(--muted)]">Production Scikit-Learn Pipeline</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {p.id === "digit-recognition" && (
+                        <div className="flex items-center gap-3">
+                          <div className="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                            <Sparkles className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <span className="font-mono text-xs font-bold text-[var(--fg)] block">Interactive CNN Classifier</span>
+                            <span className="font-mono text-[10px] text-[var(--muted)]">Centroid Alignment & Softmax Top-3</span>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex items-center justify-between font-mono text-[10px] text-[var(--muted)]">
+                        <span>Index: {p.index}</span>
+                        <span className="text-[var(--accent)] font-semibold flex items-center gap-1">
+                          Build notes →
+                        </span>
+                      </div>
                     </div>
-
-                    {/* Graphic Elements based on project */}
-                    {p.id === "aegis" && (
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                          <Activity className="h-5 w-5 animate-pulse" />
-                        </div>
-                        <div>
-                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">GDACS Live Satellite Stream</span>
-                          <span className="font-mono text-[10px] text-[var(--muted)]">NDMA & FEMA Protocol-Grounded RAG</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {p.id === "focus-jumper" && (
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
-                          <Cpu className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">36 Clinical EEG Subjects · 19 Channels</span>
-                          <span className="font-mono text-[10px] text-[var(--muted)]">Theta/Beta Welch PSD & Phase Locking (PLV)</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {p.id === "signalscale" && (
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                          <Zap className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">Predictive Lead Scoring Engine</span>
-                          <span className="font-mono text-[10px] text-[var(--muted)]">Production Scikit-Learn Pipeline</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {p.id === "digit-recognition" && (
-                      <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                          <Sparkles className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">Interactive CNN Classifier</span>
-                          <span className="font-mono text-[10px] text-[var(--muted)]">Euler Topology & 28×28 Correlation</span>
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="flex items-center justify-between font-mono text-[10px] text-[var(--muted)]">
-                      <span>Index: {p.index}</span>
-                      <span>Production Verified</span>
-                    </div>
-                  </div>
+                  </Link>
 
                   {/* Title & Subtitle */}
-                  <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors flex items-center justify-between">
-                    <span>{p.title}</span>
-                    <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-[var(--accent)]" />
-                  </h3>
+                  <Link href={`/builds/${p.id}`} className="block group/title">
+                    <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--fg)] group-hover/title:text-[var(--accent)] transition-colors flex items-center justify-between">
+                      <span>{p.title}</span>
+                      <ArrowUpRight className="h-5 w-5 opacity-0 group-hover/title:opacity-100 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all text-[var(--accent)]" />
+                    </h3>
+                  </Link>
                   <p className="mt-1 font-mono text-xs font-medium text-[var(--muted)]">
                     {p.subtitle}
                   </p>
@@ -262,6 +258,13 @@ export default function BuildsPage() {
                 {/* Bottom Actions */}
                 <div className="mt-6 flex items-center justify-between border-t border-[var(--line)] pt-3.5 font-mono text-xs">
                   <div className="flex items-center gap-3">
+                    <Link
+                      href={`/builds/${p.id}`}
+                      className="inline-flex items-center gap-1 font-bold text-[var(--fg)] hover:text-[var(--accent)] transition-colors"
+                    >
+                      <span>Build notes</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
                     {p.liveUrl && (
                       <a
                         href={p.liveUrl}
@@ -280,7 +283,7 @@ export default function BuildsPage() {
                       className="inline-flex items-center gap-1 text-[var(--muted)] hover:text-[var(--fg)]"
                     >
                       <GitBranch className="h-3.5 w-3.5" />
-                      <span>Source Code</span>
+                      <span>Source</span>
                     </a>
                   </div>
 
@@ -308,8 +311,10 @@ export default function BuildsPage() {
                 {filteredProjects.map((p) => (
                   <tr key={p.id} className="hover:bg-[var(--surface-2)] transition">
                     <td className="py-3 px-4">
-                      <div className="font-bold text-[var(--fg)]">{p.title}</div>
-                      <div className="text-[11px] text-[var(--muted)]">{p.subtitle}</div>
+                      <Link href={`/builds/${p.id}`} className="hover:text-[var(--accent)] transition-colors">
+                        <div className="font-bold text-[var(--fg)] hover:text-[var(--accent)]">{p.title}</div>
+                        <div className="text-[11px] text-[var(--muted)]">{p.subtitle}</div>
+                      </Link>
                     </td>
                     <td className="py-3 px-4 text-[var(--muted)]">{p.domain}</td>
                     <td className="py-3 px-4 font-bold text-[var(--accent)]">
@@ -319,7 +324,13 @@ export default function BuildsPage() {
                       {p.whatItRefuses[0]}
                     </td>
                     <td className="py-3 px-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-2.5">
+                        <Link
+                          href={`/builds/${p.id}`}
+                          className="font-bold text-[var(--fg)] hover:text-[var(--accent)] transition-colors"
+                        >
+                          Notes ↗
+                        </Link>
                         {p.liveUrl && (
                           <a
                             href={p.liveUrl}

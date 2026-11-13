@@ -197,26 +197,26 @@ export function BciSimulatorCard() {
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-mono text-xl font-bold tracking-tight text-[var(--fg)]">
-                Focus Jumper / NeuralFocus BCI
+                EEG Cognitive Attention System
               </h3>
               <span className="rounded-full bg-[var(--badge-bg)] px-2.5 py-0.5 text-xs font-mono font-semibold text-[var(--badge-text)]">
-                DEEP-DIVE CASE STUDY
+                RESEARCH CASE STUDY
               </span>
             </div>
             <p className="text-sm text-[var(--muted)]">
-              Closed-loop neurofeedback arcade runner powered by clinical EEG spectral analysis
+              Cognitive attention regulation and interactive feedback using EEG theta-beta spectral analysis
             </p>
           </div>
         </div>
 
         <a
-          href="https://github.com/shivangguptaaa/bci-model"
+          href="https://github.com/shivangguptaaa"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 rounded-lg border border-[var(--line)] bg-[var(--surface-2)] px-3 py-1.5 font-mono text-xs font-medium text-[var(--fg)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
         >
           <GitBranch className="h-3.5 w-3.5" />
-          <span>Source Repo</span>
+          <span>Source Code</span>
           <ExternalLink className="h-3 w-3 opacity-60" />
         </a>
       </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Terminal, Shield, Sparkles, CheckCircle2, AlertOctagon, CornerDownLeft, ArrowRight } from "lucide-react";
+import { Terminal, Shield, Sparkles, CheckCircle2, AlertOctagon, CornerDownLeft, ArrowRight, Loader2 } from "lucide-react";
+import { evaluateAgentQuery } from "@/lib/agentEvaluator";
 
 interface QueryPreset {
   id: string;
@@ -22,11 +23,23 @@ const PRESETS: QueryPreset[] = [
     label: "Does Shivang know Rust?",
     query: "Does Shivang know Rust or build production kernels with it?",
     trace: {
-      plan: "Querying technical knowledge base and verified repositories for language: 'Rust'.",
-      call: "vector_db.find({ skill: 'Rust', min_experience: 'production' })",
-      result: "Matched: [Python, C++, TypeScript, Node.js, MNE-Python, PyTorch]. Rust score: 0.0 (Not verified).",
-      answer: "No. Shivang specializes deeply in Python, C++, TypeScript, and Node.js. He has not written production engines in Rust. The agent refuses to invent skills that are not strictly substantiated.",
+      plan: "Checking verified technical skills for language: 'Rust'.",
+      call: "skills_boundary.check({ skill: 'Rust' })",
+      result: "Not verified in projects. Matched stack: Python, C++, TypeScript, JavaScript, SQL.",
+      answer: "No. Shivang works primarily with Python, C++, TypeScript, JavaScript, and SQL. He has not worked with Rust in his projects, and the agent refuses to claim skills outside his verified work.",
       refused: true
+    }
+  },
+  {
+    id: "sql",
+    label: "Does he know SQL?",
+    query: "Does Shivang know SQL and relational database design?",
+    trace: {
+      plan: "Checking verified project repositories and database schemas.",
+      call: "skills_engine.evaluate({ query: 'SQL / Databases', sources: ['Aegis', 'FullStack', 'Coursework'] })",
+      result: "Found: SQL (PostgreSQL, MySQL, schema design, relational queries) and NoSQL (MongoDB Atlas).",
+      answer: "Yes, he knows SQL well and has worked with PostgreSQL and MySQL alongside MongoDB Atlas for his full-stack platforms and data pipelines.",
+      refused: false
     }
   },
   {
@@ -38,18 +51,6 @@ const PRESETS: QueryPreset[] = [
       call: "protocol_filter.check_permission({ action: 'prescribe_medication', domain: 'triage' })",
       result: "Policy Violation: NDMA SOP #MED-01 strictly forbids autonomous chemical/drug prescriptions.",
       answer: "Aegis strictly refuses to prescribe medical drugs or triage pharmaceuticals autonomously. It routes rescue coordinators strictly through official NDMA first-aid stabilization protocols.",
-      refused: true
-    }
-  },
-  {
-    id: "bci",
-    label: "Can Focus Jumper read thoughts?",
-    query: "Does the NeuralFocus BCI reconstruct private thoughts or inner speech?",
-    trace: {
-      plan: "Inspecting EEG signal processing pipeline specifications.",
-      call: "dsp_pipeline.get_band_targets()",
-      result: "Output: Welch Power Spectral Density restricted to Theta (4-8Hz) and Beta (13-30Hz) ratios for attention regulation.",
-      answer: "No. NeuralFocus computes non-invasive macroscopic spectral power ratios (Theta/Beta ratio) and Phase Locking Values across 19 scalp electrodes. It measures cognitive attention arousal, not linguistic thoughts.",
       refused: true
     }
   },
@@ -77,30 +78,59 @@ export function AgentTraceSimulator() {
     setCustomInput("");
   };
 
-  const handleCustomSubmit = (e: React.FormEvent) => {
+  const handleCustomSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!customInput.trim()) return;
+    const query = customInput.trim();
+    if (!query) return;
 
     setIsRunning(true);
-    setTimeout(() => {
+    try {
+      // First try the dynamic agent API endpoint (which connects to Gemini if configured)
+      const res = await fetch("/api/agent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+
+      if (res.ok) {
+        const evaluation = await res.json();
+        setActivePreset({
+          id: "custom",
+          label: "Custom Query",
+          query,
+          trace: {
+            plan: evaluation.plan,
+            call: evaluation.call,
+            result: evaluation.result,
+            answer: evaluation.answer,
+            refused: evaluation.refused,
+          },
+        });
+      } else {
+        throw new Error("API call failed");
+      }
+    } catch {
+      // Fallback seamlessly to local deterministic knowledge evaluator
+      const evaluation = evaluateAgentQuery(query);
       setActivePreset({
         id: "custom",
         label: "Custom Query",
-        query: customInput,
+        query,
         trace: {
-          plan: `Analyzing perimeter and truth constraint for query: "${customInput}"`,
-          call: `boundary_engine.evaluate("${customInput}")`,
-          result: "Checked against Shivang Gupta's verified resume, repositories, and published metrics.",
-          answer: `Based on Shivang's verified background: B.Tech CSE at JECRC (9.22 CGPA), SIH 2025 Finalist, 3 live cloud engines, 36-subject EEG BCI research, and Celebal/MNIT internships. The system refuses to hallucinate claims outside this verified perimeter.`,
-          refused: false
-        }
+          plan: evaluation.plan,
+          call: evaluation.call,
+          result: evaluation.result,
+          answer: evaluation.answer,
+          refused: evaluation.refused,
+        },
       });
+    } finally {
       setIsRunning(false);
-    }, 400);
+    }
   };
 
   return (
-    <section id="trace" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <section id="trace" className="mx-auto max-w-[1360px] px-4 py-16 sm:px-6">
       {/* Header */}
       <div className="border-b border-[var(--line)] pb-4 mb-8">
         <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold">
@@ -147,15 +177,22 @@ export function AgentTraceSimulator() {
               type="text"
               value={customInput}
               onChange={(e) => setCustomInput(e.target.value)}
-              placeholder="Or ask a custom question (e.g. Does Shivang have experience in MLOps?)..."
+              placeholder="Ask anything about Shivang (e.g., 'Does he know SQL?', 'What projects has he built?')..."
               className="flex-1 bg-transparent font-mono text-xs text-[var(--fg)] placeholder-[var(--muted)] focus:outline-none"
             />
             <button
               type="submit"
               disabled={isRunning || !customInput.trim()}
-              className="rounded-lg bg-[var(--surface-2)] px-2.5 py-1 font-mono text-[11px] text-[var(--fg)] hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition disabled:opacity-40"
+              className="rounded-lg bg-[var(--surface-2)] px-3 py-1 font-mono text-[11px] text-[var(--fg)] hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition disabled:opacity-40 flex items-center gap-1 cursor-pointer font-semibold"
             >
-              Run Trace
+              {isRunning ? (
+                <>
+                  <Loader2 className="h-3 w-3 animate-spin text-[var(--accent)]" />
+                  <span>Auditing...</span>
+                </>
+              ) : (
+                <span>Run Trace</span>
+              )}
             </button>
           </div>
         </form>

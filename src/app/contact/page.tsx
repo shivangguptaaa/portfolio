@@ -1,15 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
 import { InteractiveGlyph } from "@/components/InteractiveGlyph";
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import { GithubIcon, LinkedinIcon } from "@/components/Icons";
-import { Mail, Copy, Check, Send, Clock, MapPin, ExternalLink, Phone, MessageSquare } from "lucide-react";
+import { Check, Copy, ExternalLink } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function ContactPage() {
@@ -61,255 +59,251 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--fg)] transition-colors">
+    <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--fg)] transition-colors animate-page-enter">
       <Navbar
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         onToggleTerminal={() => setIsTerminalOpen(!isTerminalOpen)}
       />
 
-      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-8 sm:px-6">
-        {/* Return Breadcrumb */}
-        <div className="mb-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >
-            <span>← Return to home</span>
-          </Link>
-        </div>
-
-        {/* Header with Interactive Canvas Glyph */}
+      <main className="flex-1 mx-auto max-w-[1360px] w-full px-4 py-8 sm:px-6">
+        {/* Iconic CONTACT Particle Glyph Header */}
         <div className="border-b border-[var(--line)] pb-4 mb-8">
-          <InteractiveGlyph text="Issue" subtext="OPEN AN ISSUE · TRANSMISSION LANDS DIRECTLY IN MY INBOX" />
+          <InteractiveGlyph text="CONTACT" subtext="DIRECT TRANSMISSION · INBOX ROUTED VIA SECURE PROTOCOL" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
               <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
                 Direct transmission. Fill in the parameters below and it routes straight to my inbox.
               </p>
             </div>
-            <span className="font-mono text-xs text-[var(--accent)] font-bold">
+            <span className="font-mono text-xs text-[var(--accent)] font-bold tracking-wider">
               RESPONSE TIME &lt; 24H
             </span>
           </div>
         </div>
 
         {/* 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          {/* Left 2 Cols: GitHub Issue Form Simulator */}
-          <div className="lg:col-span-2 rounded-2xl border border-[var(--line)] bg-[var(--surface)] overflow-hidden shadow-xl">
-            {/* Header mimicking GitHub repository issue creator */}
-            <div className="flex items-center justify-between border-b border-[var(--line)] bg-[var(--paper)] px-5 py-3 font-mono text-xs">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-[var(--fg)]">{PERSONAL_INFO.handle}</span>
-                <span className="text-[var(--muted)]">/</span>
-                <span className="text-[var(--muted)]">hello</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16 items-start">
+          {/* Left Column (7 cols): Message Form */}
+          <div className="lg:col-span-7 issue">
+            <div className="issue-head">
+              <div>
+                <b>{PERSONAL_INFO.handle}</b> <span style={{ color: "var(--muted)" }}>/ message</span>
               </div>
-              <span className="rounded bg-[var(--accent)] px-2 py-0.5 font-bold text-[var(--on-accent)] text-[10px]">
-                New issue
-              </span>
+              <span>Direct message</span>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-5">
-              {/* Issue Title */}
-              <div>
-                <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1.5 font-semibold">
-                  Title
-                </label>
+            <form className="msg" onSubmit={handleSubmit}>
+              <div className="field">
+                <label htmlFor="issue-title">TITLE</label>
                 <input
+                  id="issue-title"
                   type="text"
                   required
-                  placeholder="e.g. AI Engineering Role / Aegis Discussion"
+                  placeholder="Internship role on our AI team"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-xl border border-[var(--line)] bg-[var(--paper)] px-4 py-2.5 font-mono text-xs text-[var(--fg)] placeholder-[var(--muted)] focus:border-[var(--accent)] focus:outline-none transition"
                 />
               </div>
 
-              {/* Tag Picker (Radio Pills) */}
-              <div>
-                <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2 font-semibold">
-                  Label
-                </label>
-                <div className="flex flex-wrap gap-2 font-mono text-xs">
-                  {[
-                    { id: "hiring", label: "hiring" },
-                    { id: "freelance", label: "freelance" },
-                    { id: "collaboration", label: "collaboration" },
-                    { id: "just-saying-hi", label: "just saying hi" },
-                  ].map((tag) => (
-                    <button
-                      key={tag.id}
-                      type="button"
-                      onClick={() => setSelectedTag(tag.id)}
-                      className={`rounded-full px-3 py-1 text-xs transition ${
-                        selectedTag === tag.id
-                          ? "bg-[var(--accent)] text-[var(--on-accent)] font-bold shadow-sm"
-                          : "border border-[var(--line)] bg-[var(--paper)] text-[var(--muted)] hover:text-[var(--fg)]"
-                      }`}
-                    >
-                      #{tag.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <fieldset className="field pick">
+                <legend className="label">LABEL</legend>
+                {[
+                  { id: "hiring", label: "hiring" },
+                  { id: "freelance", label: "freelance" },
+                  { id: "collaboration", label: "collaboration" },
+                  { id: "just-saying-hi", label: "just saying hi" },
+                ].map((tag) => (
+                  <label key={tag.id}>
+                    <input
+                      type="radio"
+                      name="issue-label"
+                      value={tag.id}
+                      checked={selectedTag === tag.id}
+                      onChange={() => setSelectedTag(tag.id)}
+                    />
+                    <span>{tag.label}</span>
+                  </label>
+                ))}
+              </fieldset>
 
-              {/* Description */}
-              <div>
-                <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1.5 font-semibold">
-                  Description
-                </label>
+              <div className="field">
+                <label htmlFor="issue-desc">DESCRIPTION</label>
                 <textarea
+                  id="issue-desc"
                   required
-                  rows={5}
-                  placeholder="What you're building, what you need, or how I can help..."
+                  placeholder="What you’re working on, and where I’d fit."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full rounded-xl border border-[var(--line)] bg-[var(--paper)] p-4 font-mono text-xs text-[var(--fg)] placeholder-[var(--muted)] focus:border-[var(--accent)] focus:outline-none transition"
                 />
               </div>
 
-              {/* Sender Name & Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1.5 font-semibold">
-                    Your Name
-                  </label>
+              <div className="two">
+                <div className="field">
+                  <label htmlFor="issue-name">YOUR NAME</label>
                   <input
+                    id="issue-name"
                     type="text"
                     required
-                    placeholder="Ada Lovelace"
+                    placeholder="Your name"
                     value={senderName}
                     onChange={(e) => setSenderName(e.target.value)}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--paper)] px-4 py-2.5 font-mono text-xs text-[var(--fg)] placeholder-[var(--muted)] focus:border-[var(--accent)] focus:outline-none transition"
                   />
                 </div>
-
-                <div>
-                  <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1.5 font-semibold">
-                    Your Email
-                  </label>
+                <div className="field">
+                  <label htmlFor="issue-email">YOUR EMAIL</label>
                   <input
+                    id="issue-email"
                     type="email"
                     required
-                    placeholder="ada@example.com"
+                    placeholder="you@domain.com"
                     value={senderEmail}
                     onChange={(e) => setSenderEmail(e.target.value)}
-                    className="w-full rounded-xl border border-[var(--line)] bg-[var(--paper)] px-4 py-2.5 font-mono text-xs text-[var(--fg)] placeholder-[var(--muted)] focus:border-[var(--accent)] focus:outline-none transition"
                   />
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto rounded-xl bg-[var(--accent)] px-6 py-3 font-mono text-xs font-bold text-[var(--on-accent)] shadow transition hover:opacity-90 active:scale-95"
-                >
-                  <Send className="h-3.5 w-3.5" />
-                  <span>SUBMIT NEW ISSUE</span>
+              <div className="form-foot">
+                <div className={`form-note ${submitted ? "on" : ""}`}>
+                  {submitted ? "Transmission dispatched! Email client opened." : ""}
+                </div>
+                <button type="submit" className="btn-submit-issue">
+                  Submit message
                 </button>
               </div>
-
-              {submitted && (
-                <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-3 font-mono text-xs text-emerald-400">
-                  Issue dispatched! Your email client has been prepared with the formatted payload.
-                </div>
-              )}
             </form>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="space-y-6">
-            {/* Clock & Location Card */}
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 font-mono text-xs">
-              <div className="flex items-center justify-between border-b border-[var(--line)] pb-3 mb-4">
-                <span className="font-bold text-[var(--fg)]">COORDINATES</span>
-                <span className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Online
-                </span>
-              </div>
+          {/* Right Column (5 cols): Side Info & Coordinates */}
+          <div className="lg:col-span-5 space-y-8 font-mono text-xs pl-0 lg:pl-2">
+            {/* Availability Timeline Block */}
+            <div className="border-b border-[var(--line)] pb-6">
+              <span className="text-[11px] font-bold text-[var(--accent)] uppercase tracking-wider block mb-2">
+                Current Availability Timeline
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+                2026 – 2027 Roles
+              </h3>
+              <p className="mt-2 text-white/90 text-sm leading-relaxed font-sans">
+                Open for full-time Software Engineer, AI/ML, and Full-Stack Developer opportunities. Available for immediate discussions and technical consultations.
+              </p>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-2 text-[var(--muted)]">
-                  <Clock className="h-4 w-4 text-[var(--accent)]" />
-                  <span>{timeStr || "17:00:00"} IST (UTC+5:30)</span>
-                </div>
-
-                <div className="flex items-center gap-2 text-[var(--muted)]">
-                  <MapPin className="h-4 w-4 text-[var(--accent)]" />
-                  <span>Jaipur, Rajasthan, India</span>
-                </div>
-
-                <div className="flex items-center gap-2 text-[var(--muted)]">
-                  <Phone className="h-4 w-4 text-[var(--accent)]" />
-                  <span>(+91) 7610993308</span>
-                </div>
+              <div className="mt-4 flex items-center gap-2 text-emerald-400 font-bold">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Response time: &lt; 24 hours</span>
               </div>
             </div>
 
-            {/* Direct Email Copier */}
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 font-mono text-xs">
-              <span className="font-bold text-[var(--fg)] block mb-2">DIRECT INBOX</span>
-              <p className="text-[var(--muted)] text-[11px] mb-3 leading-relaxed">
-                Prefer direct communication over the issue tracker?
-              </p>
+            {/* Prominent Local Time Card with Big Seconds Readout */}
+            <div className="border-b border-[var(--line)] pb-6 space-y-4">
+              <span className="text-[11px] font-bold text-white uppercase tracking-wider block">
+                Coordinates &amp; Local Time
+              </span>
 
-              <div className="flex items-center justify-between rounded-xl bg-[var(--paper)] p-3 border border-[var(--line)]">
-                <span className="truncate text-[var(--fg)] text-[11px]">{PERSONAL_INFO.email}</span>
+              {/* Big Digital Clock Display */}
+              <div className="rounded-xl border border-[var(--line-strong)] bg-[var(--surface)] p-4 sm:p-5 shadow-lg">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--muted)] block mb-1 font-semibold">
+                  My Local Time · Asia/Kolkata
+                </span>
+                <div className="font-display font-black text-4xl sm:text-5xl text-[var(--accent)] tabular-nums tracking-tight leading-tight">
+                  {timeStr || "23:38:53"}
+                </div>
+                <div className="text-xs text-[var(--muted)] mt-2 font-mono flex items-center justify-between pt-1 border-t border-[var(--line)]">
+                  <span>India Standard Time (UTC+5:30)</span>
+                  <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Live</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-white text-sm pt-1">
+                <span className="text-[var(--muted)]">Location:</span>
+                <span className="font-bold text-white">Jaipur, Rajasthan · India</span>
+              </div>
+
+              <div className="flex items-center justify-between text-white text-sm">
+                <span className="text-[var(--muted)]">Direct Phone:</span>
+                <a
+                  href={`tel:${PERSONAL_INFO.phone}`}
+                  className="font-bold text-white hover:text-[var(--accent)] transition"
+                >
+                  {PERSONAL_INFO.phone}
+                </a>
+              </div>
+            </div>
+
+            {/* Direct Email Address with Copy */}
+            <div className="border-b border-[var(--line)] pb-6">
+              <span className="text-[11px] font-bold text-white uppercase tracking-wider block mb-2">
+                Direct Inbox
+              </span>
+              <div className="flex items-center justify-between rounded-xl bg-[var(--surface)] p-3.5 border border-[var(--line)]">
+                <span className="truncate text-white font-bold text-xs select-all">
+                  {PERSONAL_INFO.email}
+                </span>
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="flex items-center gap-1 text-[var(--accent)] hover:underline ml-2"
+                  className="flex items-center gap-1.5 text-[var(--accent)] hover:underline ml-3 font-bold cursor-pointer"
                 >
-                  {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
-                  <span>{copied ? "Copied" : "Copy"}</span>
+                  {copied ? (
+                    <Check className="h-3.5 w-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="h-3.5 w-3.5" />
+                  )}
+                  <span>{copied ? "Copied" : "Copy email"}</span>
                 </button>
               </div>
             </div>
 
-            {/* Social & Resume Links */}
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 font-mono text-xs space-y-2.5">
-              <span className="font-bold text-[var(--fg)] block mb-1">PROFILES & ASSETS</span>
+            {/* Verified Public Channels (Platform Label on Left, URL on Right) */}
+            <div>
+              <span className="text-[11px] font-bold text-white uppercase tracking-wider block mb-3">
+                Verified Channels
+              </span>
+              <div className="flex flex-col">
+                {/* GitHub */}
+                <a
+                  href={PERSONAL_INFO.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-3 border-b border-[var(--line)] text-white hover:text-[var(--accent)] transition group"
+                >
+                  <span className="font-sans font-semibold text-sm text-[var(--fg)]">GitHub</span>
+                  <span className="font-mono text-xs text-[var(--muted)] group-hover:text-[var(--accent)] flex items-center gap-1.5 transition">
+                    <span>github.com/{PERSONAL_INFO.handle}</span>
+                    <ExternalLink className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition" />
+                  </span>
+                </a>
 
-              <a
-                href={PERSONAL_INFO.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-xl border border-[var(--line)] bg-[var(--paper)] p-3 text-[var(--fg)] hover:border-[var(--accent)] transition"
-              >
-                <div className="flex items-center gap-2">
-                  <GithubIcon className="h-4 w-4" />
-                  <span>GitHub</span>
-                </div>
-                <ExternalLink className="h-3 w-3 text-[var(--muted)]" />
-              </a>
+                {/* LinkedIn */}
+                <a
+                  href={PERSONAL_INFO.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-3 border-b border-[var(--line)] text-white hover:text-[var(--accent)] transition group"
+                >
+                  <span className="font-sans font-semibold text-sm text-[var(--fg)]">LinkedIn</span>
+                  <span className="font-mono text-xs text-[var(--muted)] group-hover:text-[var(--accent)] flex items-center gap-1.5 transition">
+                    <span>linkedin.com/in/shivanggupta</span>
+                    <ExternalLink className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition" />
+                  </span>
+                </a>
 
-              <a
-                href={PERSONAL_INFO.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-xl border border-[var(--line)] bg-[var(--paper)] p-3 text-[var(--fg)] hover:border-[var(--accent)] transition"
-              >
-                <div className="flex items-center gap-2">
-                  <LinkedinIcon className="h-4 w-4" />
-                  <span>LinkedIn</span>
-                </div>
-                <ExternalLink className="h-3 w-3 text-[var(--muted)]" />
-              </a>
-
-              <a
-                href="/Shivang_Gupta_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-xl border border-[var(--line)] bg-[var(--paper)] p-3 text-[var(--fg)] hover:border-[var(--accent)] transition"
-              >
-                <div className="flex items-center gap-2 text-[var(--accent)] font-bold">
-                  <Mail className="h-4 w-4" />
-                  <span>Official Résumé (PDF)</span>
-                </div>
-                <ExternalLink className="h-3 w-3 text-[var(--accent)]" />
-              </a>
+                {/* Résumé */}
+                <a
+                  href="/Shivang_Gupta_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between py-3 border-b border-[var(--line)] text-white hover:text-[var(--accent)] transition group"
+                >
+                  <span className="font-sans font-semibold text-sm text-[var(--accent)]">Résumé</span>
+                  <span className="font-mono text-xs text-[var(--accent)] group-hover:underline flex items-center gap-1.5 transition">
+                    <span>Download Verified PDF</span>
+                    <ExternalLink className="h-3.5 w-3.5 opacity-70 group-hover:opacity-100 transition" />
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

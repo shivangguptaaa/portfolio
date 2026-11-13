@@ -52,7 +52,7 @@ export function SkillsMatrix() {
               <th className="py-3 px-3 text-center">Aegis (Disaster)</th>
               <th className="py-3 px-3 text-center">SignalScale (ML)</th>
               <th className="py-3 px-3 text-center">Digit CNN</th>
-              <th className="py-3 px-3 text-center">Focus Jumper BCI</th>
+              <th className="py-3 px-3 text-center">Cognitive Monitor</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[var(--line)]">

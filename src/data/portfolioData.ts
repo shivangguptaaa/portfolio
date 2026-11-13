@@ -54,8 +54,8 @@ export const PERSONAL_INFO = {
   handle: "shivangguptaaa",
   title: "Full Stack Developer & AI Engineer",
   headline: "AI THAT KNOWS ITS LIMITS",
-  tagline: "High-performance full-stack platforms, deterministic AI boundaries, and biomedical DSP.",
-  bio: "Computer Science Engineering student at JECRC Foundation, Jaipur (CGPA: 9.22). Experienced in building production-grade full-stack web platforms, machine learning pipelines, and clinical biomedical signal processing (EEG & BCI). SIH 2025 Top 10 Finalist.",
+  tagline: "Scalable full-stack platforms, cloud architectures, and automated data pipelines.",
+  bio: "Final-year Computer Science Engineering student at JECRC Foundation, Jaipur (CGPA: 9.22). Experienced in building production-grade full-stack web platforms, cloud architectures, and automated data pipelines. SIH 2025 Top 10 Finalist.",
   phone: "(+91) 7610993308",
   email: "shivang2005gupta@gmail.com",
   github: "https://github.com/shivangguptaaa",
@@ -63,19 +63,19 @@ export const PERSONAL_INFO = {
   leetcode: "https://leetcode.com/u/shivangguptaaa",
   location: "Jaipur, Rajasthan, India",
   timezone: "IST · UTC+5:30",
-  status: "Open to Full Stack & AI Roles",
+  status: "Final Year CSE '27 · Open to Full Stack & AI Roles",
 };
 
 export const NUMBERS_TICKER = [
   { value: "9.22", label: "CGPA at JECRC" },
   { value: "Top 10", label: "Smart India Hackathon Finalist" },
-  { value: "36", label: "Clinical EEG Subjects" },
-  { value: "93%", label: "BCI Random Forest Acc" },
-  { value: "99.2%", label: "CNN MNIST Accuracy" },
-  { value: "9", label: "Public GitHub Repositories" },
-  { value: "3", label: "Live Production Cloud Apps" },
-  { value: "8", label: "Disaster Protocols Grounded" },
+  { value: "93%", label: "EEG Research Accuracy" },
+  { value: "97.5%", label: "Digit Recognition Acc" },
   { value: "3rd Prize", label: "MNIT Energy Hackathon" },
+  { value: "250+", label: "SIH Competing Teams" },
+  { value: "9", label: "Public GitHub Repositories" },
+  { value: "2", label: "ServiceNow Certifications" },
+  { value: "CEI", label: "Celebal Excellence Alumnus" },
 ];
 
 export const PROJECTS: Project[] = [
@@ -113,33 +113,33 @@ export const PROJECTS: Project[] = [
   {
     id: "focus-jumper",
     index: "02 / 04",
-    title: "Focus Jumper / NeuralFocus BCI",
-    subtitle: "Closed-loop neurofeedback arcade game powered by clinical EEG spectral analysis",
-    domain: "Neurotechnology • Biomedical DSP • ML Gaming",
+    title: "EEG Cognitive Attention System",
+    subtitle: "Cognitive attention monitoring and interactive game feedback using theta-beta spectral ratios",
+    domain: "Machine Learning • Signal Processing",
     badge: "RESEARCH CASE STUDY",
     isBciInteractive: true,
-    githubUrl: "https://github.com/shivangguptaaa/bci-model",
+    githubUrl: "https://github.com/shivangguptaaa",
     description:
-      "Built at Swaarogym Medical Devices (MIIC, MNIT Jaipur). A Brain-Computer Interface (BCI) system bridging clinical EEG brainwave processing and interactive game mechanics. Evaluates 36 subjects from the PhysioNet dataset, computing real-time Theta/Beta spectral ratios and Phase Locking Values (PLV) to power in-game jump mechanics via cognitive focus.",
+      "Developed during the research internship at Swaarogym Medical Devices (MIIC, MNIT Jaipur). A machine learning system analyzing EEG frequency bands to classify user attention levels during cognitive tasks. Computes Theta/Beta power spectral ratios using Welch's method to drive an interactive feedback game.",
     whatItDoes: [
-      "Evaluates 36 clinical EEG subjects recorded at 500 Hz across 19 scalp channels (rest vs arithmetic)",
+      "Processes EEG recordings across rest and mental arithmetic task conditions",
       "Extracts Welch's Power Spectral Density across Theta (4-8 Hz) and Beta (13-30 Hz) bands",
-      "Computes Theta/Beta Ratio (TBR) as a neurobiological biomarker for cognitive attention",
-      "Extracts functional inter-electrode connectivity via Alpha-band Phase Locking Value (PLV)",
-      "Achieved 93% classification accuracy with Random Forest, driving closed-loop Pygame jump mechanics"
+      "Computes Theta/Beta Ratio (TBR) as an established metric for cognitive attention",
+      "Trained Random Forest, SVM, and Logistic Regression models, achieving 93% accuracy",
+      "Connects attention classification output to an interactive game feedback loop"
     ],
     whatItRefuses: [
-      "Never fabricates synthetic brainwaves: all models trained exclusively on real clinical EDF recordings",
-      "Rejects unfiltered raw EEG: enforces strict 1–40 Hz bandpass FIR filtering to eliminate 50 Hz powerline hum",
-      "Zero cloud latency: model inference executes in under 2ms locally via joblib estimators without cloud egress"
+      "Never claims clinical diagnosis: model is strictly designed for educational cognitive monitoring feedback",
+      "Rejects unfiltered raw signals: applies 1–40 Hz bandpass filtering to remove electrical interference",
+      "Runs entirely client-side/offline without transmitting personal signal data to external clouds"
     ],
     metrics: [
       { label: "Random Forest Acc", value: "93.0%" },
-      { label: "Clinical Subjects", value: "36 PhysioNet" },
-      { label: "DSP Metric", value: "Theta/Beta (TBR)" },
-      { label: "Research Lab", value: "MNIT MIIC" }
+      { label: "Dataset Samples", value: "36 Subjects" },
+      { label: "Extraction Metric", value: "Theta/Beta (TBR)" },
+      { label: "Incubator Lab", value: "MIIC, MNIT Jaipur" }
     ],
-    techStack: ["Python", "MNE-Python", "SciPy (Welch / Hilbert)", "Scikit-Learn", "Pygame", "NumPy", "Matplotlib"]
+    techStack: ["Python", "SciPy (Welch PSD)", "Scikit-Learn", "NumPy", "Matplotlib", "Pandas"]
   },
   {
     id: "signalscale",
@@ -211,9 +211,9 @@ export const INTERNSHIPS: Internship[] = [
     period: "May 2026 – Jul 2026",
     badge: "Celebal Excellence Internship",
     description: [
-      "Selected for the prestigious Celebal Excellence Internship (CEI) in the Data Science domain.",
-      "Working on enterprise data preprocessing, machine learning, and real-world data science projects using Python.",
-      "Applying advanced exploratory data analysis, feature engineering, and model development techniques on industry-oriented datasets."
+      "Completed the prestigious Celebal Excellence Internship (CEI) in the Data Science domain.",
+      "Engineered enterprise data preprocessing, machine learning feature engineering, and model validation projects in Python.",
+      "Applied exploratory data analysis, feature engineering, and predictive algorithms on industry-oriented datasets."
     ]
   },
   {
@@ -247,7 +247,7 @@ export const EDUCATION_LIST: Education[] = [
     degree: "B. Tech in Computer Science and Engineering",
     institution: "JECRC Foundation",
     location: "Jaipur, Rajasthan",
-    period: "2023 – Present",
+    period: "2023 – 2027 (Final Year)",
     score: "CGPA: 9.22"
   },
   {
@@ -312,12 +312,12 @@ export const TECH_MATRIX = [
   { tech: "C++", aegis: false, bci: false, signal: false, mnist: false, core: true },
   { tech: "Node.js / Express.js", aegis: true, bci: false, signal: false, mnist: false },
   { tech: "MongoDB Atlas", aegis: true, bci: false, signal: false, mnist: false },
-  { tech: "MNE-Python & DSP", aegis: false, bci: true, signal: false, mnist: false },
+  { tech: "Signal Feature Extraction", aegis: false, bci: true, signal: false, mnist: false },
   { tech: "Scikit-Learn", aegis: false, bci: true, signal: true, mnist: false },
   { tech: "PyTorch / CNN", aegis: false, bci: false, signal: false, mnist: true },
   { tech: "Gemini 2.5 Flash RAG", aegis: true, bci: false, signal: false, mnist: false },
   { tech: "HTML5 Canvas Raster", aegis: false, bci: true, signal: false, mnist: true },
-  { tech: "Pygame Neuro Engine", aegis: false, bci: true, signal: false, mnist: false },
+  { tech: "Interactive Feedback UI", aegis: false, bci: true, signal: false, mnist: false },
   { tech: "Streamlit Workspace", aegis: false, bci: false, signal: true, mnist: false },
   { tech: "Render Cloud Hosting", aegis: true, bci: false, signal: true, mnist: true },
 ];
@@ -328,8 +328,8 @@ export const SKILL_CATEGORIES = [
     skills: ["Python", "C++", "JavaScript", "TypeScript", "SQL", "HTML5/CSS3"]
   },
   {
-    title: "AI & Neurotech",
-    skills: ["PyTorch", "Scikit-Learn", "MNE-Python", "SciPy DSP", "Welch PSD", "NumPy", "Pandas"]
+    title: "AI & Machine Learning",
+    skills: ["PyTorch", "Scikit-Learn", "SciPy DSP", "Welch PSD", "NumPy", "Pandas"]
   },
   {
     title: "Back-End & Cloud",
@@ -337,6 +337,6 @@ export const SKILL_CATEGORIES = [
   },
   {
     title: "Engineering Disciplines",
-    skills: ["RAG Systems", "Closed-Loop BCI", "Geospatial Telemetry", "Calibrated ML", "Disaster AI"]
+    skills: ["RAG Systems", "Cognitive Monitoring", "Geospatial Telemetry", "Calibrated ML", "Disaster AI"]
   }
 ];

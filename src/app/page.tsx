@@ -53,26 +53,6 @@ export default function HomePage() {
       {/* Footer */}
       <Footer />
 
-      {/* Floating Bottom Quick Triggers */}
-      <div className="fixed bottom-4 right-4 z-30 flex items-center gap-2 font-mono text-xs">
-        <button
-          type="button"
-          onClick={() => setIsTerminalOpen(!isTerminalOpen)}
-          className="flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-2 text-[var(--fg)] shadow-lg backdrop-blur hover:border-[var(--accent)] hover:text-[var(--accent)] transition"
-        >
-          <Terminal className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">CLI (~ `)</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setIsCommandPaletteOpen(true)}
-          className="flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 py-2 text-[var(--fg)] shadow-lg backdrop-blur hover:border-[var(--accent)] hover:text-[var(--accent)] transition"
-        >
-          <span>⌘K</span>
-        </button>
-      </div>
-
       {/* Modals */}
       <CommandPalette
         isOpen={isCommandPaletteOpen}

@@ -8,56 +8,131 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
 import { InteractiveGlyph } from "@/components/InteractiveGlyph";
 import { SkillsMatrix } from "@/components/SkillsMatrix";
-import { PERSONAL_INFO, INTERNSHIPS, EDUCATION_LIST, CERTIFICATIONS, ACHIEVEMENTS } from "@/data/portfolioData";
-import { Briefcase, GraduationCap, Award, MapPin, Mail, ExternalLink, User } from "lucide-react";
+import { PERSONAL_INFO } from "@/data/portfolioData";
+import { ExternalLink, Check } from "lucide-react";
 
 export default function AboutPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  const workTimeline = [
+  const workList = [
     {
       code: "CLB",
       role: "Data Science Intern",
       company: "Celebal Technologies · Jaipur, India",
       when: "May 2026 – Jul 2026",
-      isCurrent: true,
+      isCurrent: false,
       badge: "Celebal Excellence Internship",
       points: [
-        "Selected for the prestigious Celebal Excellence Internship (CEI) in the Data Science domain.",
+        "Completed the prestigious Celebal Excellence Internship (CEI) in the Data Science domain.",
         "Engineered production-grade exploratory data analysis pipelines and feature engineering workflows on enterprise datasets.",
-        "Trained, benchmarked, and evaluated predictive machine learning models in Python for industry workloads."
+        "Trained, benchmarked, and evaluated predictive machine learning models in Python for industry workloads.",
       ],
-      chips: ["Python", "Pandas", "Scikit-Learn", "EDA", "Enterprise ML"]
+      chips: ["Python", "Pandas", "Scikit-Learn", "EDA", "Enterprise ML"],
+    },
+    {
+      code: "SDI",
+      role: "ServiceNow Developer Intern",
+      company: "ServiceNow Enterprise Platform · Jaipur, India",
+      when: "Feb 2026 – Mar 2026",
+      isCurrent: false,
+      badge: "CAD & CSA Certified",
+      points: [
+        "Developed custom scoped applications and automated enterprise IT service management (ITSM) workflows.",
+        "Authored Business Rules, Script Includes, Client Scripts, and UI Policies adhering to platform governance standards.",
+        "Automated cross-departmental incident and service request pipelines using Flow Designer and Integration Hub.",
+      ],
+      chips: ["ServiceNow", "JavaScript", "Workflow Automation", "ITSM", "CAD", "CSA"],
     },
     {
       code: "MNIT",
-      role: "Summer Research Intern — AI & ML in Healthcare",
-      company: "MNIT Jaipur (Malaviya National Institute of Technology) · Jaipur, India",
-      when: "Jun 2025 – Jul 2025",
-      isCurrent: false,
-      badge: "Academic Research",
-      points: [
-        "Implemented medical machine learning pipelines on clinical datasets using Python and Scikit-learn under institute faculty mentorship.",
-        "Conducted clinical biomarker feature extraction, patient cohort clustering, and ROC-AUC classification calibration."
-      ],
-      chips: ["Healthcare AI", "Biomarker DSP", "Scikit-Learn", "Python"]
-    },
-    {
-      code: "SWA",
-      role: "EEG Research & Machine Learning Engineer",
+      role: "Summer Research Intern — Biomedical Signal Processing",
       company: "Swaarogym Medical Devices (MIIC, MNIT Jaipur) · Jaipur, India",
       when: "Jun 2025 – Jul 2025",
       isCurrent: false,
-      badge: "Medical Incubation",
+      badge: "Biomedical Research",
       points: [
-        "Engineered biomedical EEG cognitive attention regulation system on 36 clinical subjects recorded at 500 Hz across 19 scalp channels.",
-        "Computed Welch's Power Spectral Density across Theta (4-8 Hz) and Beta (13-30 Hz) bands, deriving real-time Theta/Beta Ratio (TBR) and Phase Locking Value (PLV) connectivity.",
-        "Achieved 93% accuracy with Random Forest classifier, driving real-time closed-loop Pygame neurofeedback jump mechanics."
+        "Conducted biomedical signal processing research on multi-channel EEG recordings under institute mentorship at MIIC, MNIT Jaipur.",
+        "Extracted theta and beta frequency band features using Welch's power spectral density (PSD) estimation.",
+        "Applied zero-phase Butterworth bandpass filtering (1–40 Hz) and notch filtering for electrical noise and artifact reduction.",
+        "Analyzed Theta/Beta power spectral ratios (TBR) across rest and mental arithmetic task conditions in Python.",
       ],
-      chips: ["MNE-Python", "Welch PSD", "SciPy DSP", "Phase Locking (PLV)", "Random Forest", "Pygame"]
-    }
+      chips: ["Biomedical Signals", "EEG Research", "Welch PSD", "SciPy", "Python", "DSP"],
+    },
+  ];
+
+  const leadershipList = [
+    {
+      code: "ASH",
+      role: "Student Coordinator",
+      org: "Aashayein : The Life Saviours · Jaipur, Rajasthan (On-site)",
+      when: "Aug 2025 – Apr 2026 · 9 mos",
+      isCurrent: true,
+      points: [
+        "Coordinated arrangements for blood and SDP (Single Donor Platelets) requirements across hospitals in Jaipur during emergency medical situations.",
+        "Managed on-call hospital emergency response, donor verification logistics, and volunteer task force allocation.",
+      ],
+      chips: ["Team Leadership", "Team Coordination", "Emergency Response", "Healthcare Logistics"],
+    },
+    {
+      code: "SIH",
+      role: "Top 10 Finalist & Team Lead",
+      org: "Smart India Hackathon 2025 (SIH 2025) · National",
+      when: "Nov 2025",
+      isCurrent: true,
+      points: [
+        "Led a 6-member engineering team to Top 10 national ranking out of 250+ competing institutions.",
+        "Architected Aegis: Disaster Preparedness Platform with disaster awareness modules, quizzes, an AI chatbot, and student progress tracking.",
+      ],
+      chips: ["Team Lead", "Emergency Drills", "AI Chatbot", "Full Stack"],
+    },
+    {
+      code: "ASH",
+      role: "Member",
+      org: "Aashayein : The Life Saviours · Jaipur, Rajasthan (On-site)",
+      when: "Sep 2023 – Aug 2025 · 2 yrs",
+      isCurrent: false,
+      points: [
+        "Assisted in arranging blood and SDP donors for patients across hospitals in Jaipur during urgent medical requirements.",
+        "Contributed to organizing Blood Donation Camps (BDC) and Blood Group Checking Camps (BGC) as part of community outreach and awareness initiatives.",
+        "Coordinated with volunteers and donors to support smooth execution of healthcare and social service activities.",
+        "Participated actively in awareness drives and volunteer activities focused on encouraging blood donation and community support.",
+        "Strengthened teamwork, communication, and coordination skills through active involvement in organizational activities and emergency support operations.",
+      ],
+      chips: ["Event Management", "Team Coordination", "Donor Logistics", "Community Outreach"],
+    },
+  ];
+
+  const studiedList = [
+    {
+      code: "CSE",
+      degree: "B.Tech, Computer Science and Engineering",
+      org: "JECRC Foundation, Jaipur · Current CGPA 9.22",
+      when: "2023 – 2027 (Final Year)",
+      isCurrent: true,
+    },
+    {
+      code: "XII",
+      degree: "Senior Secondary (Class XII)",
+      org: "Maheshwari Public School, Jaipur · CBSE 88.4%",
+      when: "2023",
+      isCurrent: false,
+    },
+    {
+      code: "X",
+      degree: "Secondary Education (Class X)",
+      org: "Maheshwari Public School, Jaipur · CBSE 97.0%",
+      when: "2021",
+      isCurrent: false,
+    },
+  ];
+
+  const certList = [
+    "ServiceNow CAD (Certified Application Developer)",
+    "ServiceNow CSA (Certified System Administrator)",
+    "Full Stack Web Development",
+    "Machine Learning Specialization",
   ];
 
   return (
@@ -67,23 +142,13 @@ export default function AboutPage() {
         onToggleTerminal={() => setIsTerminalOpen(!isTerminalOpen)}
       />
 
-      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-8 sm:px-6">
-        {/* Return Breadcrumb */}
-        <div className="mb-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >
-            <span>← Return to home</span>
-          </Link>
-        </div>
-
-        {/* 1. Massive Interactive Canvas Glyph Header */}
+      <main className="flex-1 mx-auto max-w-[1360px] w-full px-4 py-8 sm:px-6">
+        {/* 1. Interactive Canvas Glyph Header */}
         <div className="border-b border-[var(--line)] pb-4 mb-10">
-          <InteractiveGlyph text="About" subtext="FULL STACK DEVELOPER & AI ENGINEER · JECRC CSE 9.22 CGPA" />
+          <InteractiveGlyph text="ABOUT" subtext="FULL STACK DEVELOPER & AI ENGINEER · JECRC CSE 9.22 CGPA" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
-              The engineer behind the boundaries. Full-stack architectures, neurotech DSP, and production systems.
+              The engineer behind the boundaries. Scalable full-stack systems, machine learning pipelines, and interactive applications.
             </p>
             <span className="font-mono text-xs text-[var(--accent)] font-bold">
               JAIPUR, RAJASTHAN · INDIA
@@ -120,7 +185,7 @@ export default function AboutPage() {
                 )}
               </div>
 
-              {/* Quick Facts List (<dl class="qf">) */}
+              {/* Quick Facts List */}
               <dl className="mt-6 space-y-3.5 border-t border-[var(--line)] pt-4 font-mono text-xs">
                 <div>
                   <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Based in</dt>
@@ -128,7 +193,9 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Studying</dt>
-                  <dd className="font-semibold text-[var(--fg)] mt-0.5">B.Tech CSE @ JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>)</dd>
+                  <dd className="font-semibold text-[var(--fg)] mt-0.5">
+                    B.Tech CSE @ JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>)
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Building</dt>
@@ -155,136 +222,118 @@ export default function AboutPage() {
             </aside>
           </div>
 
-          {/* Right Column: Bio + "Where I've worked" Timeline Chart (8 cols) */}
+          {/* Right Column: Bio + Work + Leadership + Studied (8 cols) */}
           <div className="lg:col-span-8 space-y-12">
             {/* The Short Version Bio */}
             <div>
               <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold block mb-1">
                 Background
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-black uppercase tracking-tight text-[var(--fg)]">
-                The Short Version
+              <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[var(--fg)]">
+                Short version
               </h2>
               <div className="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-[var(--muted)] font-sans">
                 <p>
-                  I am a final-year Computer Science Engineering undergraduate at <strong className="text-[var(--fg)]">JECRC Foundation, Jaipur</strong> maintaining a cumulative CGPA of <strong className="text-[var(--accent)]">9.22</strong>. I engineer scalable full-stack web applications, deterministic machine learning models, and biomedical brain-computer interface systems.
+                  I am a final-year Computer Science Engineering undergraduate at <strong className="text-[var(--fg)]">JECRC Foundation, Jaipur</strong> maintaining a cumulative CGPA of <strong className="text-[var(--accent)]">9.22</strong>. I build scalable full-stack web applications, machine learning systems, and interactive cognitive feedback tools.
                 </p>
                 <p>
-                  At <strong className="text-[var(--fg)]">Smart India Hackathon (SIH 2025)</strong>, my team was selected as a <strong className="text-[var(--fg)]">Top 10 Finalist</strong> out of 250+ teams nationwide for developing <em>Aegis</em> — an institutional disaster command platform powered by live GDACS satellite telemetry and protocol-grounded NDMA emergency response RAG workflows.
+                  At <strong className="text-[var(--fg)]">Smart India Hackathon (SIH 2025)</strong>, my team was selected as a <strong className="text-[var(--fg)]">Top 10 Finalist</strong> out of 250+ competing teams for developing <em>Aegis</em> — an institutional disaster preparedness platform with disaster awareness modules, quizzes, an AI chatbot, and student progress tracking.
                 </p>
                 <p>
-                  At <strong className="text-[var(--fg)]">Swaarogym Medical Devices</strong> (incubated at MIIC, MNIT Jaipur), I conducted biomedical EEG signal processing across 36 clinical subjects, computing real-time Theta/Beta spectral power ratios and Phase Locking Values to classify attention states with 93% accuracy, directly driving an interactive closed-loop neurofeedback game.
+                  At <strong className="text-[var(--fg)]">Swaarogym Medical Devices</strong> (incubated at MIIC, MNIT Jaipur), I built an EEG-based attention monitoring system, extracting theta-beta features via Welch&apos;s method and training machine learning models that achieved 93% accuracy to power an interactive feedback game.
                 </p>
               </div>
             </div>
 
-            {/* Where I've Worked (Exact Vansh Arora .dtl Timeline Chart) */}
-            <section>
-              <div className="flex items-center justify-between border-b border-[var(--line)] pb-3 mb-8">
-                <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--fg)]">
-                  Where I’ve Worked
-                </h3>
-                <span className="font-mono text-xs text-[var(--muted)]">3 Internships</span>
-              </div>
+            {/* Where I've Worked (.dtl Diamond Layout) */}
+            <section className="about-sec" id="about-work">
+              <h2>Where I’ve worked</h2>
 
-              {/* Detailed Timeline List (.dtl) with Vertical Connection Track */}
-              <div className="relative border-l-2 border-[var(--line-strong)] ml-4 pl-6 sm:pl-8 space-y-10">
-                {workTimeline.map((item, idx) => (
-                  <div key={idx} className="relative group">
-                    {/* Monogram Badge (.dia) on the timeline track */}
-                    <span className="absolute -left-[37px] sm:-left-[45px] top-0 flex h-8 w-8 items-center justify-center rounded-full border-2 border-[var(--line-strong)] bg-[var(--surface)] font-mono text-[10px] font-bold text-[var(--accent)] shadow-md group-hover:border-[var(--accent)] transition-colors">
-                      {item.code}
+              <ol className="dtl">
+                {workList.map((item, idx) => (
+                  <li key={idx} className={item.isCurrent ? "now" : ""}>
+                    {/* 45-degree Diamond Monogram */}
+                    <span className="dia" aria-hidden="true">
+                      <span>{item.code}</span>
                     </span>
 
-                    {/* Timeline Item Content */}
-                    <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 hover:border-[var(--line-strong)] transition-all duration-200">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-[var(--line)] pb-3">
-                        <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--muted)]">
-                          {item.when}
-                        </p>
-                        <span className="rounded-full bg-[var(--surface-2)] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[var(--accent)] border border-[var(--line)] w-fit">
-                          {item.badge}
-                        </span>
-                      </div>
-
-                      <h4 className="font-display text-xl sm:text-2xl font-black uppercase tracking-tight text-[var(--fg)] mt-3">
-                        {item.role}
-                      </h4>
-                      <p className="font-mono text-xs text-[var(--muted)] font-medium mt-1">
-                        {item.company}
-                      </p>
-
-                      <ul className="mt-4 space-y-2 text-xs sm:text-sm text-[var(--muted)] leading-relaxed">
+                    <div>
+                      <p className="when label">{item.when}</p>
+                      <h3>{item.role}</h3>
+                      <p className="org">{item.company}</p>
+                      <ul>
                         {item.points.map((pt, i) => (
-                          <li key={i} className="flex items-start gap-2.5">
-                            <span className="text-[var(--accent)] font-mono text-sm leading-none mt-1">›</span>
-                            <span>{pt}</span>
-                          </li>
+                          <li key={i}>{pt}</li>
                         ))}
                       </ul>
-
-                      {/* Chips / Tech Stack */}
-                      <div className="mt-5 pt-3 border-t border-[var(--line)] flex flex-wrap gap-1.5">
+                      <div className="chips">
                         {item.chips.map((chip) => (
-                          <span
-                            key={chip}
-                            className="rounded-full border border-[var(--line)] bg-[var(--paper)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--muted)]"
-                          >
-                            {chip}
-                          </span>
+                          <span key={chip}>{chip}</span>
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </section>
 
-            {/* Education & Certifications */}
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Education */}
-              <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6">
-                <div className="flex items-center gap-2 border-b border-[var(--line)] pb-3 mb-4">
-                  <GraduationCap className="h-4 w-4 text-[var(--accent)]" />
-                  <h4 className="font-display text-lg font-black uppercase tracking-tight text-[var(--fg)]">
-                    Education
-                  </h4>
-                </div>
+            {/* Leadership Section (.dtl Diamond Layout) */}
+            <section className="about-sec" id="about-lead">
+              <h2>Leadership</h2>
 
-                <div className="space-y-4">
-                  {EDUCATION_LIST.map((edu, idx) => (
-                    <div key={idx} className="rounded-xl bg-[var(--paper)] p-3 border border-[var(--line)] font-mono text-xs">
-                      <div className="flex items-center justify-between font-bold">
-                        <span className="text-[var(--fg)]">{edu.degree}</span>
-                        <span className="text-[var(--accent)]">{edu.score}</span>
+              <ol className="dtl">
+                {leadershipList.map((item, idx) => (
+                  <li key={idx} className={item.isCurrent ? "now" : ""}>
+                    <span className="dia" aria-hidden="true">
+                      <span>{item.code}</span>
+                    </span>
+                    <div>
+                      <p className="when label">{item.when}</p>
+                      <h3>{item.role}</h3>
+                      <p className="org">{item.org}</p>
+                      <ul>
+                        {item.points.map((pt, i) => (
+                          <li key={i}>{pt}</li>
+                        ))}
+                      </ul>
+                      <div className="chips">
+                        {item.chips.map((chip) => (
+                          <span key={chip}>{chip}</span>
+                        ))}
                       </div>
-                      <div className="text-[var(--muted)] mt-1">{edu.institution}</div>
-                      <div className="text-[10px] text-[var(--muted)] mt-0.5">{edu.period}</div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
 
-              {/* Certifications */}
-              <div className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6">
-                <div className="flex items-center gap-2 border-b border-[var(--line)] pb-3 mb-4">
-                  <Award className="h-4 w-4 text-[var(--accent)]" />
-                  <h4 className="font-display text-lg font-black uppercase tracking-tight text-[var(--fg)]">
-                    Certifications
-                  </h4>
-                </div>
+            {/* Studied Section (.dtl Diamond Layout + Cert Pills) */}
+            <section className="about-sec" id="about-study">
+              <h2>Studied</h2>
 
-                <div className="space-y-3 font-mono text-xs">
-                  {CERTIFICATIONS.map((cert, idx) => (
-                    <div key={idx} className="flex items-center justify-between rounded-xl bg-[var(--paper)] p-3 border border-[var(--line)]">
-                      <div>
-                        <div className="font-bold text-[var(--fg)]">{cert.name}</div>
-                        <div className="text-[10px] text-[var(--muted)]">{cert.issuer}</div>
-                      </div>
-                      <span className="text-[10px] text-[var(--accent)] font-semibold">{cert.date}</span>
+              <ol className="dtl">
+                {studiedList.map((item, idx) => (
+                  <li key={idx} className={item.isCurrent ? "now" : ""}>
+                    <span className="dia" aria-hidden="true">
+                      <span>{item.code}</span>
+                    </span>
+                    <div>
+                      <p className="when label">{item.when}</p>
+                      <h3>{item.degree}</h3>
+                      <p className="org">{item.org}</p>
                     </div>
-                  ))}
-                </div>
+                  </li>
+                ))}
+              </ol>
+
+              {/* Inline Certifications Badges */}
+              <div className="certs" aria-label="Certificates">
+                {certList.map((cert, idx) => (
+                  <span key={idx} className="cert">
+                    <Check className="h-3.5 w-3.5 text-[var(--accent)]" />
+                    <span>{cert}</span>
+                  </span>
+                ))}
               </div>
             </section>
           </div>

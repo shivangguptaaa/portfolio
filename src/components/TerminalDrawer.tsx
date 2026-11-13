@@ -50,7 +50,7 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
         newHistory.push(
           { text: "SYSTEM COMMANDS:" },
           { text: "  projects     - List all 4 flagship systems with live links" },
-          { text: "  bci          - Print BCI signal processing & EEG formulas" },
+          { text: "  eeg          - Print EEG attention classification formulas" },
           { text: "  theme [name] - Switch visual skin (phosphor, ivory, riso)" },
           { text: "  about        - View Shivang's engineering biography" },
           { text: "  skills       - View full-stack & AI technology breakdown" },
@@ -65,19 +65,19 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
         newHistory.push({ text: "FLAGSHIP PRODUCTION SYSTEMS:" });
         PROJECTS.forEach((p) => {
           newHistory.push({
-            text: `• [${p.badge}] ${p.title} (${p.domain})\n  ${p.liveUrl ? `Live URL: ${p.liveUrl}` : "In-card BCI Simulator"}\n  Repo: ${p.githubUrl}`,
+            text: `• [${p.badge}] ${p.title} (${p.domain})\n  ${p.liveUrl ? `Live URL: ${p.liveUrl}` : "Simulator Card"}\n  Repo: ${p.githubUrl}`,
           });
         });
         break;
 
-      case "bci":
+      case "eeg":
         newHistory.push(
-          { text: "NEURALFOCUS BCI ARCHITECTURE:" },
-          { text: "• Clinical Dataset: 36 subjects (PhysioNet Mental Arithmetic, 500 Hz)" },
-          { text: "• Bandpass Filter: 1.0 Hz - 40.0 Hz FIR window" },
+          { text: "EEG COGNITIVE ATTENTION ARCHITECTURE:" },
+          { text: "• Research Lab: Swaarogym Medical Devices (MIIC, MNIT Jaipur)" },
+          { text: "• Bandpass Filter: 1.0 Hz - 40.0 Hz windowing" },
           { text: "• Frequency Metric: Theta/Beta Ratio (TBR) = Mean(PSD[4-8Hz]) / Mean(PSD[13-30Hz])" },
-          { text: "• Functional Connectivity: Phase Locking Value (PLV) across 19 scalp channels" },
-          { text: "• Closed-Loop Engine: Pygame neurofeedback accumulates Focus Fuel" }
+          { text: "• Classifiers: Random Forest (93% accuracy), SVM, Logistic Regression" },
+          { text: "• Feedback Loop: Connected to interactive cognitive feedback game" }
         );
         break;
 
@@ -102,8 +102,8 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
         newHistory.push(
           { text: "SKILLS BREAKDOWN:" },
           { text: "• Languages: Python, TypeScript, JavaScript, SQL, C++, HTML5 Canvas" },
-          { text: "• AI/ML: CNN, Scikit-Learn, Gradient Boost, Gemini Flash RAG, DSP" },
-          { text: "• Neurotech: MNE-Python, Welch PSD, Hilbert PLV, EEG Epoching" },
+          { text: "• AI/ML: CNN, Scikit-Learn, Random Forest, Gradient Boost, Gemini RAG" },
+          { text: "• Signal ML: Welch PSD, Feature Extraction, Filtering, Band Power" },
           { text: "• Full-Stack: Next.js 16, React 19, Node.js, Express, MongoDB Atlas, Render" }
         );
         break;
@@ -177,7 +177,7 @@ export function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps) {
           type="text"
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
-          placeholder="type 'help', 'projects', 'bci', 'theme riso'..."
+          placeholder="type 'help', 'projects', 'eeg', 'theme riso'..."
           className="w-full bg-transparent text-white placeholder-neutral-500 focus:outline-none"
         />
       </form>
