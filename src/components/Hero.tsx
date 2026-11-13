@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import { AsciiHeroBanner } from "@/components/AsciiBanners";
-import { ArrowDown, Terminal, Clock, MapPin, Sparkles, ExternalLink, Copy, Check, Radio } from "lucide-react";
+import { InteractiveGlyph } from "@/components/InteractiveGlyph";
+import { ArrowRight, ExternalLink, Terminal, Copy, Check } from "lucide-react";
 
 interface HeroProps {
   onOpenTerminal: () => void;
@@ -21,9 +21,8 @@ export function Hero({ onOpenTerminal }: HeroProps) {
           timeZone: "Asia/Kolkata",
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
           hour12: false,
-        })
+        }) + " IST"
       );
     };
     updateTime();
@@ -38,95 +37,158 @@ export function Hero({ onOpenTerminal }: HeroProps) {
   };
 
   return (
-    <section className="relative mx-auto max-w-6xl px-4 pt-8 pb-12 sm:px-6 md:pt-14 md:pb-16">
-      {/* ASCII Typographic Header */}
-      <div className="w-full overflow-hidden border-b border-[var(--line)] pb-4 mb-8">
-        <AsciiHeroBanner />
+    <section className="relative mx-auto max-w-6xl px-4 pt-4 pb-14 sm:px-6 md:pt-6 md:pb-20">
+      {/* 1. Interactive ASCII Matrix Glyph Canvas Header */}
+      <div className="w-full border-b border-[var(--line)] pb-2 mb-8">
+        <InteractiveGlyph text="SHIVANG GUPTA" />
       </div>
 
-      {/* Top Metadata Line */}
-      <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-xs text-[var(--muted)]">
-        <div className="flex items-center gap-2">
-          <MapPin className="h-3.5 w-3.5 text-[var(--accent)]" />
-          <span>Jaipur, India · IST (UTC+5:30)</span>
-        </div>
+      {/* 2. Hero Grid: Main Headline + Rotated Profile ID Card */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* Left Column: Headline, Bio & CTAs (7 cols) */}
+        <div className="lg:col-span-7">
+          <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[var(--fg)] leading-[0.92]">
+            AI THAT KNOWS ITS <em className="text-[var(--accent)] not-italic font-black">LIMITS.</em>
+          </h1>
 
-        <div className="flex items-center gap-2">
-          <Clock className="h-3.5 w-3.5 text-[var(--accent)]" />
-          <span>{timeStr || "17:00:00"} IST</span>
-        </div>
-      </div>
+          <p className="mt-6 text-base sm:text-lg leading-relaxed text-[var(--muted)] max-w-2xl font-sans">
+            I’m <strong className="text-[var(--fg)]">Shivang Gupta</strong>, a computer science engineer at JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>) and Top 10 Smart India Hackathon Finalist. I build production cloud engines, clinical biomedical EEG systems, and protocol-grounded RAG architectures with strict perimeter boundaries.
+          </p>
 
-      {/* Brutalist Archivo Display Headline */}
-      <div className="mt-6">
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-[var(--fg)] leading-[0.95]">
-          AI THAT KNOWS ITS LIMITS
-        </h1>
-        <p className="mt-4 font-mono text-base sm:text-xl font-bold text-[var(--accent)] tracking-tight">
-          Shivang Gupta — AI & Systems Engineer · JECRC CSE (9.22 CGPA) · SIH 2025 Finalist
-        </p>
-      </div>
+          {/* Action CTAs */}
+          <div className="mt-8 flex flex-wrap items-center gap-3 font-mono text-sm font-medium">
+            <a
+              href="#builds-showcase"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-3 text-[var(--on-accent)] font-bold shadow-md hover:bg-[var(--fg)] hover:text-[var(--bg)] transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <span>See the builds</span>
+              <ArrowRight className="h-4 w-4" />
+            </a>
 
-      {/* Bio Statement */}
-      <p className="mt-5 max-w-3xl text-sm sm:text-base leading-relaxed text-[var(--muted)] font-sans">
-        Final-year Computer Science Engineering student at JECRC Foundation, Jaipur (CGPA: 9.22), Top 10 Smart India Hackathon Finalist. Built Aegis (disaster command with live GDACS satellite telemetry & NDMA RAG), Focus Jumper (clinical EEG BCI with MNIT & Swaarogym), SignalScale (&lt;15ms lead scoring), and 99.2% MNIST CNN. 3 live cloud engines, 3 research internships (Celebal, MNIT, Swaarogym).
-      </p>
+            <a
+              href="/Shivang_Gupta_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line-strong)] bg-[var(--bg)] px-5 py-3 text-[var(--fg)] font-semibold hover:border-[var(--fg)] transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <span>Résumé</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
 
-      {/* Main Action CTAs + Profile Pill */}
-      <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        {/* Buttons */}
-        <div className="flex flex-wrap items-center gap-3 font-mono text-xs font-semibold">
-          <a
-            href="#builds-showcase"
-            className="flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-2.5 text-[var(--on-accent)] shadow transition hover:opacity-90 active:scale-95"
-          >
-            <span>SEE THE BUILDS</span>
-            <ArrowDown className="h-3.5 w-3.5" />
-          </a>
-
-          <a
-            href="/Shivang_Gupta_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-4 py-2.5 text-[var(--fg)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
-          >
-            <span>RÉSUMÉ</span>
-            <ExternalLink className="h-3.5 w-3.5" />
-          </a>
-
-          <button
-            type="button"
-            onClick={onOpenTerminal}
-            className="flex items-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface-2)] px-4 py-2.5 text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--fg)]"
-          >
-            <Terminal className="h-3.5 w-3.5" />
-            <span>LAUNCH CLI (~ `)</span>
-          </button>
-        </div>
-
-        {/* Floating Profile Card / Pill */}
-        <div className="flex items-center gap-3 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-2.5 sm:px-4 font-mono text-xs shadow-sm">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-[var(--muted)] hidden sm:inline">Status:</span>
-            <span className="text-[var(--fg)] font-semibold truncate max-w-[150px] sm:max-w-none">
-              Building Aegis & NeuralFocus
-            </span>
+            <button
+              type="button"
+              onClick={onOpenTerminal}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface-2)] px-4 py-3 text-[var(--muted)] hover:text-[var(--fg)] hover:border-[var(--accent)] transition-all duration-200"
+            >
+              <Terminal className="h-3.5 w-3.5" />
+              <span>CLI (~ `)</span>
+            </button>
           </div>
+        </div>
 
-          <span className="text-[var(--line-strong)] select-none">|</span>
-
-          <button
-            type="button"
-            onClick={copyEmail}
-            className="flex items-center gap-1.5 text-[var(--accent)] hover:underline font-semibold"
+        {/* Right Column: Rotated Profile ID Card (.idcard) (5 cols) */}
+        <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <aside
+            aria-label="Profile card"
+            className="relative w-full max-w-[370px] rounded-2xl border border-[var(--line-strong)] bg-[var(--surface)] p-6 shadow-2xl transition-transform duration-300 hover:rotate-0 rotate-[-2.5deg]"
+            style={{
+              boxShadow: "0 1px 0 var(--line), 0 30px 60px -32px var(--card-shadow, rgba(0,0,0,0.5))"
+            }}
           >
-            {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
-            <span>{copied ? "Copied!" : "Copy email"}</span>
-          </button>
+            {/* Card Head */}
+            <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-[var(--muted)] font-semibold border-b border-[var(--line)] pb-3">
+              <span>ENGINEER</span>
+              <span className="text-[var(--accent)]">JECRC · CSE ’26</span>
+            </div>
+
+            {/* Card Main: Avatar + Name */}
+            <div className="mt-4 flex items-center gap-4">
+              {/* Photo Box */}
+              <div className="h-24 w-20 shrink-0 rounded-xl border border-[var(--line)] bg-[var(--surface-2)] overflow-hidden flex flex-col items-center justify-center text-center">
+                <div className="h-10 w-10 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center font-bold font-mono text-sm border border-[var(--accent)]">
+                  SG
+                </div>
+                <span className="text-[9px] font-mono text-[var(--muted)] mt-1.5 font-bold">
+                  9.22 CGPA
+                </span>
+              </div>
+
+              {/* Name & Title */}
+              <div>
+                <h2 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--fg)] leading-none">
+                  Shivang Gupta
+                </h2>
+                <p className="mt-1 text-xs text-[var(--muted)] font-sans">
+                  AI and systems engineer
+                </p>
+                <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-soft)] px-2 py-0.5 font-mono text-[10px] font-bold text-[var(--accent)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-ping" />
+                  <span>SIH 2025 Finalist</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card Facts Grid */}
+            <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-dashed border-[var(--line-strong)] pt-3.5 font-mono text-xs">
+              <div>
+                <dt className="text-[10px] text-[var(--muted)] uppercase tracking-wider">Status</dt>
+                <dd className="font-semibold text-[var(--fg)] flex items-center gap-1.5 mt-0.5">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span className="truncate">Building Aegis</span>
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-[10px] text-[var(--muted)] uppercase tracking-wider">Local time</dt>
+                <dd className="font-semibold text-[var(--fg)] mt-0.5">
+                  {timeStr || "17:20 IST"}
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-[10px] text-[var(--muted)] uppercase tracking-wider">Based in</dt>
+                <dd className="font-semibold text-[var(--fg)] mt-0.5">
+                  Jaipur, India
+                </dd>
+              </div>
+
+              <div>
+                <dt className="text-[10px] text-[var(--muted)] uppercase tracking-wider">Fastest reply</dt>
+                <dd className="font-semibold text-[var(--accent)] mt-0.5">
+                  Email
+                </dd>
+              </div>
+            </dl>
+
+            {/* Card Foot: Copy Email + Barcode */}
+            <div className="mt-5 flex items-center justify-between border-t border-[var(--line)] pt-3">
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="flex items-center gap-1.5 rounded-full border border-[var(--line-strong)] bg-[var(--bg)] px-3 py-1 font-mono text-xs text-[var(--fg)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition"
+              >
+                {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+                <span>{copied ? "Copied!" : "Copy email"}</span>
+              </button>
+
+              {/* Decorative Barcode SVG */}
+              <div className="flex items-center gap-[2px] opacity-70" aria-hidden="true">
+                <span className="h-5 w-[1px] bg-[var(--fg)]" />
+                <span className="h-5 w-[3px] bg-[var(--fg)]" />
+                <span className="h-5 w-[1px] bg-[var(--fg)]" />
+                <span className="h-5 w-[2px] bg-[var(--fg)]" />
+                <span className="h-5 w-[4px] bg-[var(--fg)]" />
+                <span className="h-5 w-[1px] bg-[var(--fg)]" />
+                <span className="h-5 w-[2px] bg-[var(--fg)]" />
+                <span className="h-5 w-[1px] bg-[var(--fg)]" />
+                <span className="h-5 w-[3px] bg-[var(--fg)]" />
+                <span className="h-5 w-[2px] bg-[var(--fg)]" />
+                <span className="h-5 w-[1px] bg-[var(--fg)]" />
+                <span className="h-5 w-[3px] bg-[var(--fg)]" />
+                <span className="h-5 w-[1px] bg-[var(--fg)]" />
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

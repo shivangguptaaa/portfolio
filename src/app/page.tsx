@@ -6,6 +6,7 @@ import { Hero } from "@/components/Hero";
 import { NumbersTicker } from "@/components/NumbersTicker";
 import { BuiltInLimits } from "@/components/BuiltInLimits";
 import { BentoShowcase } from "@/components/BentoShowcase";
+import { AgentTraceSimulator } from "@/components/AgentTraceSimulator";
 import { SkillsMatrix } from "@/components/SkillsMatrix";
 import { MilestonesTimeline } from "@/components/MilestonesTimeline";
 import { ContactSection } from "@/components/ContactSection";
@@ -28,10 +29,10 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-1">
-        {/* 1. Dynamic Hero */}
+        {/* 1. Dynamic Hero with Canvas Glyph + Rotated ID Badge Card */}
         <Hero onOpenTerminal={() => setIsTerminalOpen(true)} />
 
-        {/* 2. Numbers Ticker Marquee */}
+        {/* 2. Numbers Ticker Infinite Marquee */}
         <NumbersTicker />
 
         {/* 3. Built-In Limits (Does vs Refuses toggle) */}
@@ -40,13 +41,16 @@ export default function HomePage() {
         {/* 4. Four Builds, Opened Up (Interactive Bento Showcase) */}
         <BentoShowcase />
 
-        {/* 5. Where I Used What (Cross-Tech Matrix) */}
+        {/* 5. Try To Make My Agent Lie (Interactive LLM Trace Simulator) */}
+        <AgentTraceSimulator />
+
+        {/* 6. Where I Used What (Cross-Tech Matrix) */}
         <SkillsMatrix />
 
-        {/* 6. The Path So Far (Milestones Timeline) */}
+        {/* 7. The Path So Far (Milestones Timeline) */}
         <MilestonesTimeline />
 
-        {/* 7. Open An Issue Contact Form */}
+        {/* 8. Open An Issue Contact Form */}
         <ContactSection />
       </main>
 
