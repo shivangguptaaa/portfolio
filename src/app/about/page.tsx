@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
@@ -23,9 +24,19 @@ export default function AboutPage() {
       />
 
       <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-8 sm:px-6">
+        {/* Return Breadcrumb */}
+        <div className="mb-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+          >
+            <span>← Return to home</span>
+          </Link>
+        </div>
+
         {/* 1. Header with Interactive Canvas Glyph */}
         <div className="border-b border-[var(--line)] pb-4 mb-10">
-          <InteractiveGlyph text="ABOUT" subtext="AI & SYSTEMS ENGINEER · JECRC CSE 9.22 CGPA" />
+          <InteractiveGlyph text="ABOUT" subtext="FULL STACK DEVELOPER & AI ENGINEER · JECRC CSE 9.22 CGPA" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
               The engineer behind the boundaries. Systems, neurotechnology, and production deployments.

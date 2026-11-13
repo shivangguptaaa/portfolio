@@ -70,7 +70,7 @@ export function BentoShowcase() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--fg)]">
+                <h3 className="mt-3 font-display text-3xl sm:text-5xl font-black tracking-tight text-[var(--fg)] hover:text-[var(--accent)] transition-colors duration-150">
                   {aegis.title}
                 </h3>
                 <p className="mt-1 font-mono text-sm font-medium text-[var(--muted)]">
@@ -155,7 +155,7 @@ export function BentoShowcase() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 font-mono text-2xl sm:text-3xl font-bold tracking-tight text-[var(--fg)]">
+                <h3 className="mt-3 font-display text-3xl sm:text-5xl font-black tracking-tight text-[var(--fg)] hover:text-[var(--accent)] transition-colors duration-150">
                   {bci.title}
                 </h3>
                 <p className="mt-1 font-mono text-sm font-medium text-[var(--muted)]">
@@ -229,7 +229,7 @@ export function BentoShowcase() {
                 </span>
               </div>
 
-              <h3 className="mt-3 font-mono text-xl sm:text-2xl font-bold tracking-tight text-[var(--fg)]">
+              <h3 className="mt-3 font-display text-2xl sm:text-4xl font-black tracking-tight text-[var(--fg)] hover:text-[var(--accent)] transition-colors duration-150">
                 {signal.title}
               </h3>
               <p className="mt-1 font-mono text-xs text-[var(--muted)]">
@@ -286,7 +286,7 @@ export function BentoShowcase() {
                 </span>
               </div>
 
-              <h3 className="mt-3 font-mono text-xl sm:text-2xl font-bold tracking-tight text-[var(--fg)]">
+              <h3 className="mt-3 font-display text-2xl sm:text-4xl font-black tracking-tight text-[var(--fg)] hover:text-[var(--accent)] transition-colors duration-150">
                 {mnist.title}
               </h3>
               <p className="mt-1 font-mono text-xs text-[var(--muted)]">

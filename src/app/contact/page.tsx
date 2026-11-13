@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
-import { AsciiIssueBanner } from "@/components/AsciiBanners";
+import { InteractiveGlyph } from "@/components/InteractiveGlyph";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import { Mail, Copy, Check, Send, Clock, MapPin, ExternalLink, Phone, MessageSquare } from "lucide-react";
@@ -66,16 +67,23 @@ export default function ContactPage() {
         onToggleTerminal={() => setIsTerminalOpen(!isTerminalOpen)}
       />
 
-      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-12 sm:px-6">
-        {/* Header ASCII */}
-        <div className="border-b border-[var(--line)] pb-6 mb-8">
-          <AsciiIssueBanner />
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-8 sm:px-6">
+        {/* Return Breadcrumb */}
+        <div className="mb-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+          >
+            <span>← Return to home</span>
+          </Link>
+        </div>
+
+        {/* Header with Interactive Canvas Glyph */}
+        <div className="border-b border-[var(--line)] pb-4 mb-8">
+          <InteractiveGlyph text="ISSUE" subtext="OPEN AN ISSUE · TRANSMISSION LANDS DIRECTLY IN MY INBOX" />
+          <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
-              <h1 className="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-[var(--fg)]">
-                OPEN AN ISSUE
-              </h1>
-              <p className="mt-1 font-mono text-sm text-[var(--muted)]">
+              <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
                 Direct transmission. Fill in the parameters below and it routes straight to my inbox.
               </p>
             </div>

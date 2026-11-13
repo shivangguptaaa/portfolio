@@ -118,8 +118,8 @@ export function Hero({ onOpenTerminal }: HeroProps) {
                 <h2 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--fg)] leading-none">
                   Shivang Gupta
                 </h2>
-                <p className="mt-1 text-xs text-[var(--muted)] font-sans">
-                  AI and systems engineer
+                <p className="mt-1 text-xs text-[var(--muted)] font-mono font-medium">
+                  Full Stack Developer & AI Engineer
                 </p>
                 <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[var(--accent-soft)] px-2 py-0.5 font-mono text-[10px] font-bold text-[var(--accent)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-ping" />

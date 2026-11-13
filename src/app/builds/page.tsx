@@ -45,7 +45,17 @@ export default function BuildsPage() {
         onToggleTerminal={() => setIsTerminalOpen(!isTerminalOpen)}
       />
 
-      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-12 sm:px-6">
+      <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-8 sm:px-6">
+        {/* Return Breadcrumb */}
+        <div className="mb-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+          >
+            <span>← Return to home</span>
+          </Link>
+        </div>
+
         {/* Header with Interactive Canvas Glyph */}
         <div className="border-b border-[var(--line)] pb-4 mb-8">
           <InteractiveGlyph text="BUILDS" subtext="FLAGSHIP ENGINES • OPEN ARCHITECTURES & BOUNDARIES" />
@@ -142,7 +152,7 @@ export default function BuildsPage() {
                     </span>
                   </div>
 
-                  <h3 className="mt-3 font-mono text-xl font-bold tracking-tight text-[var(--fg)]">
+                  <h3 className="mt-3 font-display text-2xl sm:text-3xl font-black tracking-tight text-[var(--fg)] hover:text-[var(--accent)] transition-colors">
                     {p.title}
                   </h3>
                   <p className="mt-1 font-mono text-xs text-[var(--muted)]">

@@ -52,10 +52,10 @@ export interface Achievement {
 export const PERSONAL_INFO = {
   name: "Shivang Gupta",
   handle: "shivangguptaaa",
-  title: "AI & Systems Engineer",
+  title: "Full Stack Developer & AI Engineer",
   headline: "AI THAT KNOWS ITS LIMITS",
-  tagline: "High-performance AI, deterministic system boundaries, and cognitive engineering.",
-  bio: "Computer Science Engineering student at JECRC Foundation, Jaipur (CGPA: 9.22). Experienced in building production-grade full-stack platforms, autonomous RAG pipelines, and clinical biomedical signal processing (EEG & BCI). SIH 2025 Top 10 Finalist.",
+  tagline: "High-performance full-stack platforms, deterministic AI boundaries, and biomedical DSP.",
+  bio: "Computer Science Engineering student at JECRC Foundation, Jaipur (CGPA: 9.22). Experienced in building production-grade full-stack web platforms, machine learning pipelines, and clinical biomedical signal processing (EEG & BCI). SIH 2025 Top 10 Finalist.",
   phone: "(+91) 7610993308",
   email: "shivang2005gupta@gmail.com",
   github: "https://github.com/shivangguptaaa",
@@ -63,19 +63,19 @@ export const PERSONAL_INFO = {
   leetcode: "https://leetcode.com/u/shivangguptaaa",
   location: "Jaipur, Rajasthan, India",
   timezone: "IST · UTC+5:30",
-  status: "Open to high-impact AI/ML & Engineering Roles",
+  status: "Open to Full Stack & AI Roles",
 };
 
 export const NUMBERS_TICKER = [
   { value: "9.22", label: "CGPA at JECRC" },
-  { value: "Top 10", label: "Smart India Hackathon 2025" },
+  { value: "Top 10", label: "Smart India Hackathon Finalist" },
   { value: "36", label: "Clinical EEG Subjects" },
   { value: "93%", label: "BCI Random Forest Acc" },
   { value: "99.2%", label: "CNN MNIST Accuracy" },
-  { value: "3", label: "Live Production Clouds" },
+  { value: "9", label: "Public GitHub Repositories" },
+  { value: "3", label: "Live Production Cloud Apps" },
   { value: "8", label: "Disaster Protocols Grounded" },
   { value: "3rd Prize", label: "MNIT Energy Hackathon" },
-  { value: "2", label: "ServiceNow Certifications" },
 ];
 
 export const PROJECTS: Project[] = [
