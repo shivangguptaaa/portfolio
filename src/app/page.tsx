@@ -7,9 +7,8 @@ import { NumbersTicker } from "@/components/NumbersTicker";
 import { BuiltInLimits } from "@/components/BuiltInLimits";
 import { BentoShowcase } from "@/components/BentoShowcase";
 import { AgentTraceSimulator } from "@/components/AgentTraceSimulator";
-import { SkillsMatrix } from "@/components/SkillsMatrix";
 import { MilestonesTimeline } from "@/components/MilestonesTimeline";
-import { ContactSection } from "@/components/ContactSection";
+import { SayHelloSection } from "@/components/SayHelloSection";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
@@ -21,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--fg)] transition-colors">
-      {/* Sticky Header */}
+      {/* 1. Header with Brand Pill and Animated Menu Drawer */}
       <Navbar
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         onToggleTerminal={() => setIsTerminalOpen(!isTerminalOpen)}
@@ -29,29 +28,26 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-1">
-        {/* 1. Dynamic Hero with Canvas Glyph + Rotated ID Badge Card */}
+        {/* 2. Dynamic Hero: Interactive Canvas Glyph + Rotated ID Badge Card */}
         <Hero onOpenTerminal={() => setIsTerminalOpen(true)} />
 
-        {/* 2. Numbers Ticker Infinite Marquee */}
+        {/* 3. Infinite Numbers Ticker Marquee */}
         <NumbersTicker />
 
-        {/* 3. Built-In Limits (Does vs Refuses toggle) */}
+        {/* 4. Built-In Limits (Does vs Won't segmented toggle) */}
         <BuiltInLimits />
 
-        {/* 4. Four Builds, Opened Up (Interactive Bento Showcase) */}
+        {/* 5. Four Builds, Opened Up (Interactive Bento Showcase) */}
         <BentoShowcase />
 
-        {/* 5. Try To Make My Agent Lie (Interactive LLM Trace Simulator) */}
+        {/* 6. Try To Make My Agent Lie (Interactive LLM Trace Simulator) */}
         <AgentTraceSimulator />
-
-        {/* 6. Where I Used What (Cross-Tech Matrix) */}
-        <SkillsMatrix />
 
         {/* 7. The Path So Far (Milestones Timeline) */}
         <MilestonesTimeline />
 
-        {/* 8. Open An Issue Contact Form */}
-        <ContactSection />
+        {/* 8. Promptish "Say hello" CTA Banner */}
+        <SayHelloSection />
       </main>
 
       {/* Footer */}

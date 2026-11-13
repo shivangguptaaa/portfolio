@@ -6,7 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
-import { AsciiBuildsBanner } from "@/components/AsciiBanners";
+import { InteractiveGlyph } from "@/components/InteractiveGlyph";
 import { PROJECTS } from "@/data/portfolioData";
 import { Search, LayoutGrid, List, ExternalLink, GitBranch, Shield, ArrowUpRight, CheckCircle2 } from "lucide-react";
 
@@ -46,20 +46,17 @@ export default function BuildsPage() {
       />
 
       <main className="flex-1 mx-auto max-w-6xl w-full px-4 py-12 sm:px-6">
-        {/* Header with ASCII art */}
-        <div className="border-b border-[var(--line)] pb-6 mb-8">
-          <AsciiBuildsBanner />
+        {/* Header with Interactive Canvas Glyph */}
+        <div className="border-b border-[var(--line)] pb-4 mb-8">
+          <InteractiveGlyph text="BUILDS" subtext="FLAGSHIP ENGINES • OPEN ARCHITECTURES & BOUNDARIES" />
           <div className="mt-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
-              <h1 className="font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-[var(--fg)]">
-                BUILDS
-              </h1>
-              <p className="mt-1 font-mono text-sm text-[var(--muted)]">
+              <p className="font-mono text-sm text-[var(--muted)]">
                 Everything I have engineered, opened up. Architecture, live links, and strict perimeter limits.
               </p>
             </div>
             <span className="font-mono text-xs text-[var(--accent)] font-bold">
-              {PROJECTS.length} FLAGSHIP SYSTEMS
+              {PROJECTS.length} PRODUCTION BUILDS
             </span>
           </div>
         </div>

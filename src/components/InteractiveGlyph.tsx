@@ -5,9 +5,10 @@ import { useSkin } from "@/context/SkinContext";
 
 interface InteractiveGlyphProps {
   text?: string;
+  subtext?: string;
 }
 
-export function InteractiveGlyph({ text = "SHIVANG GUPTA" }: InteractiveGlyphProps) {
+export function InteractiveGlyph({ text = "SHIVANG GUPTA", subtext }: InteractiveGlyphProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { skin } = useSkin();
 
@@ -17,35 +18,72 @@ export function InteractiveGlyph({ text = "SHIVANG GUPTA" }: InteractiveGlyphPro
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || 900);
-    let height = (canvas.height = 80);
+    let animationId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || 960);
+    let height = (canvas.height = 110);
 
     const handleResize = () => {
       if (!canvas || !canvas.parentElement) return;
       width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = 80;
+      height = canvas.height = 110;
+      initPoints();
     };
     window.addEventListener("resize", handleResize);
 
-    // Matrix tokens
-    const tokens = ["AI", "RAG", "EEG", "DSP", "PLV", "TBR", "9.22", "CNN", "SIH", "MNE", "01", "10", "FAST", "NODE", "BCI"];
-    const charCols = Math.floor(width / 32);
-    const charRows = 4;
-    const grid: { char: string; x: number; y: number; originalChar: string; highlight: number }[] = [];
+    // Create an offscreen canvas to sample the text pixels
+    const offscreen = document.createElement("canvas");
+    const offCtx = offscreen.getContext("2d");
 
-    for (let r = 0; r < charRows; r++) {
-      for (let c = 0; c < charCols; c++) {
-        const token = tokens[(r * charCols + c) % tokens.length];
-        grid.push({
-          char: token,
-          originalChar: token,
-          x: c * 34 + 10,
-          y: r * 18 + 20,
-          highlight: 0
-        });
+    let points: {
+      x: number;
+      y: number;
+      char: string;
+      originalChar: string;
+      originalX: number;
+      originalY: number;
+      highlight: number;
+    }[] = [];
+
+    const chars = ["0", "1", "•", "■", "▲", "x", "+", "/", "A", "I", "R", "G", "N", "E", "U"];
+
+    const initPoints = () => {
+      if (!offCtx) return;
+      offscreen.width = width;
+      offscreen.height = height;
+
+      offCtx.fillStyle = "#ffffff";
+      offCtx.font = "900 48px 'Archivo', -apple-system, sans-serif";
+      offCtx.textAlign = "left";
+      offCtx.textBaseline = "middle";
+      offCtx.fillText(text, 12, height / 2);
+
+      const imgData = offCtx.getImageData(0, 0, width, height);
+      const data = imgData.data;
+      points = [];
+
+      const step = 8; // Grid resolution
+      for (let y = 0; y < height; y += step) {
+        for (let x = 0; x < width; x += step) {
+          const index = (y * width + x) * 4;
+          const alpha = data[index + 3];
+
+          if (alpha > 80) {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            points.push({
+              x: x,
+              y: y,
+              char: char,
+              originalChar: char,
+              originalX: x,
+              originalY: y,
+              highlight: 0,
+            });
+          }
+        }
       }
-    }
+    };
+
+    initPoints();
 
     let mouseX = -1000;
     let mouseY = -1000;
@@ -67,37 +105,50 @@ export function InteractiveGlyph({ text = "SHIVANG GUPTA" }: InteractiveGlyphPro
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Accent color based on skin
-      const accent =
+      const accentColor =
         skin === "ivory" ? "#8a2432" : skin === "riso" ? "#c81e74" : "#ffb547";
-      const muted =
-        skin === "ivory" ? "#665e52" : skin === "riso" ? "#535e9e" : "#9b978d";
+      const baseColor =
+        skin === "ivory" ? "#665e52" : skin === "riso" ? "#535e9e" : "#807c74";
 
-      grid.forEach((pt) => {
-        const dist = Math.hypot(pt.x - mouseX, pt.y - mouseY);
-        if (dist < 60) {
-          pt.highlight = Math.min(1, pt.highlight + 0.15);
-          if (Math.random() < 0.1) {
-            pt.char = tokens[Math.floor(Math.random() * tokens.length)];
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < 70) {
+          p.highlight = Math.min(1, p.highlight + 0.2);
+          const angle = Math.atan2(dy, dx);
+          const force = (70 - dist) * 0.15;
+          p.x = p.originalX + Math.cos(angle) * force;
+          p.y = p.originalY + Math.sin(angle) * force;
+
+          if (Math.random() < 0.15) {
+            p.char = chars[Math.floor(Math.random() * chars.length)];
           }
         } else {
-          pt.highlight = Math.max(0, pt.highlight - 0.05);
-          if (pt.highlight <= 0.05) pt.char = pt.originalChar;
+          p.highlight = Math.max(0, p.highlight - 0.04);
+          p.x += (p.originalX - p.x) * 0.1;
+          p.y += (p.originalY - p.y) * 0.1;
+
+          if (p.highlight <= 0.05) {
+            p.char = p.originalChar;
+          }
         }
 
-        ctx.font = "600 10px 'IBM Plex Mono', monospace";
-        if (pt.highlight > 0.1) {
-          ctx.fillStyle = accent;
-          ctx.globalAlpha = 0.5 + pt.highlight * 0.5;
+        ctx.font = "bold 9px 'IBM Plex Mono', monospace";
+        if (p.highlight > 0.05) {
+          ctx.fillStyle = accentColor;
+          ctx.globalAlpha = 0.6 + p.highlight * 0.4;
         } else {
-          ctx.fillStyle = muted;
-          ctx.globalAlpha = 0.35;
+          ctx.fillStyle = baseColor;
+          ctx.globalAlpha = 0.45;
         }
 
-        ctx.fillText(pt.char, pt.x, pt.y);
-      });
+        ctx.fillText(p.char, p.x, p.y);
+      }
 
-      animationFrameId = requestAnimationFrame(render);
+      animationId = requestAnimationFrame(render);
     };
 
     render();
@@ -106,13 +157,18 @@ export function InteractiveGlyph({ text = "SHIVANG GUPTA" }: InteractiveGlyphPro
       window.removeEventListener("resize", handleResize);
       canvas.removeEventListener("mousemove", onMouseMove);
       canvas.removeEventListener("mouseleave", onMouseLeave);
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationId);
     };
   }, [skin, text]);
 
   return (
-    <div className="w-full relative overflow-hidden select-none py-1">
-      <canvas ref={canvasRef} className="w-full block h-20" />
+    <div className="w-full relative overflow-hidden select-none py-2 cursor-pointer">
+      <canvas ref={canvasRef} className="w-full block h-[110px]" />
+      {subtext && (
+        <span className="font-mono text-[10px] text-[var(--muted)] tracking-wider block mt-1">
+          {subtext}
+        </span>
+      )}
     </div>
   );
 }
