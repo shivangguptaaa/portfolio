@@ -139,7 +139,7 @@ export default function LogPage() {
 
         {/* Header with Interactive Canvas Glyph */}
         <div className="border-b border-[var(--line)] pb-4 mb-8">
-          <InteractiveGlyph text="LOG" subtext="GITHUB LOG · SYNCED FROM @SHIVANGGUPTAAA" />
+          <InteractiveGlyph text="Log" subtext="GITHUB LOG · SYNCED FROM @SHIVANGGUPTAAA" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
               Real verified GitHub activity, commit history, and public repositories.

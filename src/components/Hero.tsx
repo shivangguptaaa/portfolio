@@ -39,8 +39,8 @@ export function Hero({ onOpenTerminal }: HeroProps) {
   return (
     <section className="relative mx-auto max-w-6xl px-4 pt-4 pb-14 sm:px-6 md:pt-6 md:pb-20">
       {/* 1. Interactive ASCII Matrix Glyph Canvas Header */}
-      <div className="w-full border-b border-[var(--line)] pb-2 mb-8">
-        <InteractiveGlyph text="SHIVANG GUPTA" />
+      <div className="w-full border-b border-[var(--line)] pb-3 mb-8">
+        <InteractiveGlyph text="Shivang Gupta" isHero={true} />
       </div>
 
       {/* 2. Hero Grid: Main Headline + Rotated Profile ID Card */}

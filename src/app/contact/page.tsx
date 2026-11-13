@@ -80,7 +80,7 @@ export default function ContactPage() {
 
         {/* Header with Interactive Canvas Glyph */}
         <div className="border-b border-[var(--line)] pb-4 mb-8">
-          <InteractiveGlyph text="ISSUE" subtext="OPEN AN ISSUE · TRANSMISSION LANDS DIRECTLY IN MY INBOX" />
+          <InteractiveGlyph text="Issue" subtext="OPEN AN ISSUE · TRANSMISSION LANDS DIRECTLY IN MY INBOX" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
               <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">

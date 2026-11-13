@@ -8,7 +8,7 @@ import { CommandPalette } from "@/components/CommandPalette";
 import { TerminalDrawer } from "@/components/TerminalDrawer";
 import { InteractiveGlyph } from "@/components/InteractiveGlyph";
 import { PROJECTS } from "@/data/portfolioData";
-import { Search, LayoutGrid, List, ExternalLink, GitBranch, Shield, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Search, LayoutGrid, List, ExternalLink, GitBranch, Shield, ArrowUpRight, Zap, Activity, Cpu, Sparkles } from "lucide-react";
 
 export default function BuildsPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -58,11 +58,11 @@ export default function BuildsPage() {
 
         {/* Header with Interactive Canvas Glyph */}
         <div className="border-b border-[var(--line)] pb-4 mb-8">
-          <InteractiveGlyph text="BUILDS" subtext="FLAGSHIP ENGINES • OPEN ARCHITECTURES & BOUNDARIES" />
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+          <InteractiveGlyph text="Builds" subtext="FLAGSHIP ENGINES • OPEN ARCHITECTURES & BOUNDARIES" />
+          <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <div>
-              <p className="font-mono text-sm text-[var(--muted)]">
-                Everything I have engineered, opened up. Architecture, live links, and strict perimeter limits.
+              <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
+                Everything I have engineered, opened up. Live production clouds, neurotech DSP, and strict perimeter limits.
               </p>
             </div>
             <span className="font-mono text-xs text-[var(--accent)] font-bold">
@@ -99,13 +99,12 @@ export default function BuildsPage() {
                       : "text-[var(--muted)] hover:text-[var(--fg)]"
                   }`}
                 >
-                  {c.label} ({c.count})
+                  {c.label} <span className="text-[10px] opacity-75">{c.count}</span>
                 </button>
               ))}
             </div>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center rounded-xl border border-[var(--line)] bg-[var(--surface)] p-1">
+            <div className="flex items-center gap-1 rounded-xl border border-[var(--line)] bg-[var(--surface)] p-1">
               <button
                 type="button"
                 onClick={() => setViewMode("grid")}
@@ -136,45 +135,118 @@ export default function BuildsPage() {
 
         {/* Content Display: Grid vs List */}
         {viewMode === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredProjects.map((p) => (
-              <div
+              <article
                 key={p.id}
-                className="rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-6 flex flex-col justify-between hover:border-[var(--line-strong)] transition-all shadow-md"
+                className="group rounded-3xl border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-7 flex flex-col justify-between hover:border-[var(--line-strong)] transition-all duration-200 shadow-xl"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold">
-                      {p.index} • {p.domain}
-                    </span>
-                    <span className="rounded-full bg-[var(--surface-2)] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[var(--muted)] border border-[var(--line)]">
-                      {p.badge}
-                    </span>
+                  {/* Visual Header / Banner (.tile-media) */}
+                  <div className="relative h-36 w-full rounded-2xl border border-[var(--line)] bg-[var(--surface-2)] overflow-hidden mb-5 p-4 flex flex-col justify-between group-hover:border-[var(--accent)] transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[var(--accent)]">
+                        {p.domain}
+                      </span>
+                      <span className="rounded-full bg-[var(--surface)] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[var(--fg)] border border-[var(--line)]">
+                        {p.badge}
+                      </span>
+                    </div>
+
+                    {/* Graphic Elements based on project */}
+                    {p.id === "aegis" && (
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                          <Activity className="h-5 w-5 animate-pulse" />
+                        </div>
+                        <div>
+                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">GDACS Live Satellite Stream</span>
+                          <span className="font-mono text-[10px] text-[var(--muted)]">NDMA & FEMA Protocol-Grounded RAG</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {p.id === "focus-jumper" && (
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                          <Cpu className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">36 Clinical EEG Subjects · 19 Channels</span>
+                          <span className="font-mono text-[10px] text-[var(--muted)]">Theta/Beta Welch PSD & Phase Locking (PLV)</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {p.id === "signalscale" && (
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                          <Zap className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">Predictive Lead Scoring Engine</span>
+                          <span className="font-mono text-[10px] text-[var(--muted)]">Production Scikit-Learn Pipeline</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {p.id === "digit-recognition" && (
+                      <div className="flex items-center gap-3">
+                        <div className="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                          <Sparkles className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <span className="font-mono text-xs font-bold text-[var(--fg)] block">Interactive CNN Classifier</span>
+                          <span className="font-mono text-[10px] text-[var(--muted)]">Euler Topology & 28×28 Correlation</span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between font-mono text-[10px] text-[var(--muted)]">
+                      <span>Index: {p.index}</span>
+                      <span>Production Verified</span>
+                    </div>
                   </div>
 
-                  <h3 className="mt-3 font-display text-2xl sm:text-3xl font-black tracking-tight text-[var(--fg)] hover:text-[var(--accent)] transition-colors">
-                    {p.title}
+                  {/* Title & Subtitle */}
+                  <h3 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors flex items-center justify-between">
+                    <span>{p.title}</span>
+                    <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-[var(--accent)]" />
                   </h3>
-                  <p className="mt-1 font-mono text-xs text-[var(--muted)]">
+                  <p className="mt-1 font-mono text-xs font-medium text-[var(--muted)]">
                     {p.subtitle}
                   </p>
 
-                  <p className="mt-3 text-xs leading-relaxed text-[var(--muted)]">
+                  <p className="mt-3.5 text-xs sm:text-sm leading-relaxed text-[var(--muted)]">
                     {p.description}
                   </p>
 
-                  {/* Refusal box */}
+                  {/* Hard Limit Box */}
                   <div className="mt-4 rounded-xl border border-[var(--line)] bg-[var(--paper)] p-3 font-mono text-xs">
-                    <div className="flex items-center gap-1.5 text-[var(--accent)] font-bold text-[11px] mb-1">
+                    <div className="flex items-center gap-1.5 text-[var(--accent)] font-bold text-[10px] uppercase tracking-wider mb-1">
                       <Shield className="h-3 w-3" />
-                      <span>Refuses to do:</span>
+                      <span>Hard Limit (What it refuses to do):</span>
                     </div>
                     <p className="text-[var(--muted)] text-[11px] leading-relaxed">
                       {p.whatItRefuses[0]}
                     </p>
                   </div>
 
-                  {/* Stack pills */}
+                  {/* Primary Metrics Highlight */}
+                  <div className="mt-4 grid grid-cols-2 gap-2 font-mono">
+                    {p.metrics.slice(0, 2).map((m, idx) => (
+                      <div key={idx} className="rounded-xl border border-[var(--line)] bg-[var(--surface-2)] p-2.5">
+                        <span className="text-[9px] uppercase tracking-wider text-[var(--muted)] block font-semibold">
+                          {m.label}
+                        </span>
+                        <span className="font-bold text-sm text-[var(--fg)] block mt-0.5">
+                          {m.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tech stack chips */}
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {p.techStack.map((tech) => (
                       <span
@@ -188,35 +260,35 @@ export default function BuildsPage() {
                 </div>
 
                 {/* Bottom Actions */}
-                <div className="mt-6 flex items-center justify-between border-t border-[var(--line)] pt-3 font-mono text-xs">
+                <div className="mt-6 flex items-center justify-between border-t border-[var(--line)] pt-3.5 font-mono text-xs">
                   <div className="flex items-center gap-3">
                     {p.liveUrl && (
                       <a
                         href={p.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 font-bold text-[var(--accent)] hover:underline"
+                        className="inline-flex items-center gap-1 font-bold text-[var(--accent)] hover:underline"
                       >
                         <span>Live Site</span>
-                        <ArrowUpRight className="h-3 w-3" />
+                        <ArrowUpRight className="h-3.5 w-3.5" />
                       </a>
                     )}
                     <a
                       href={p.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-[var(--muted)] hover:text-[var(--fg)]"
+                      className="inline-flex items-center gap-1 text-[var(--muted)] hover:text-[var(--fg)]"
                     >
-                      <GitBranch className="h-3 w-3" />
-                      <span>Source</span>
+                      <GitBranch className="h-3.5 w-3.5" />
+                      <span>Source Code</span>
                     </a>
                   </div>
 
-                  <span className="text-[10px] text-[var(--muted)]">
+                  <span className="text-[10px] text-[var(--muted)] font-mono">
                     {p.metrics[0].value}
                   </span>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         ) : (
@@ -253,7 +325,7 @@ export default function BuildsPage() {
                             href={p.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[var(--accent)] hover:underline"
+                            className="font-bold text-[var(--accent)] hover:underline"
                           >
                             Live ↗
                           </a>
@@ -264,7 +336,7 @@ export default function BuildsPage() {
                           rel="noopener noreferrer"
                           className="text-[var(--muted)] hover:text-[var(--fg)]"
                         >
-                          Repo
+                          Repo ↗
                         </a>
                       </div>
                     </td>
@@ -277,12 +349,10 @@ export default function BuildsPage() {
       </main>
 
       <Footer />
-
       <CommandPalette
         isOpen={isCommandPaletteOpen}
         onClose={() => setIsCommandPaletteOpen(false)}
       />
-
       <TerminalDrawer
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
@@ -290,5 +360,3 @@ export default function BuildsPage() {
     </div>
   );
 }
-
-
