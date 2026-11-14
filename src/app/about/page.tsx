@@ -168,7 +168,7 @@ export default function AboutPage() {
                     src="/images/shivang.jpg"
                     alt="Shivang Gupta"
                     onError={() => setImgError(true)}
-                    className="w-full h-full object-cover grayscale contrast-105 hover:grayscale-0 transition-all duration-300"
+                    className="w-full h-full object-cover object-top grayscale contrast-105 hover:grayscale-0 transition-all duration-300"
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center p-6 text-center">

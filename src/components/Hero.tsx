@@ -101,11 +101,13 @@ export function Hero({ onOpenTerminal }: HeroProps) {
             {/* Card Main: Avatar + Name */}
             <div className="mt-4 flex items-center gap-4">
               {/* Photo Box */}
-              <div className="h-24 w-20 shrink-0 rounded-xl border border-[var(--line)] bg-[var(--surface-2)] overflow-hidden flex flex-col items-center justify-center text-center">
-                <div className="h-10 w-10 rounded-full bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center font-bold font-mono text-sm border border-[var(--accent)]">
-                  SG
-                </div>
-                <span className="text-[9px] font-mono text-[var(--muted)] mt-1.5 font-bold">
+              <div className="h-24 w-20 shrink-0 rounded-xl border border-[var(--line-strong)] bg-[var(--surface-2)] overflow-hidden relative group">
+                <img
+                  src="/images/shivang.jpg"
+                  alt="Shivang Gupta"
+                  className="w-full h-full object-cover object-top grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
+                />
+                <span className="absolute bottom-1 left-1 right-1 rounded bg-black/85 px-1 py-0.5 text-[9px] font-mono text-white text-center font-bold tracking-tight backdrop-blur-xs">
                   9.22 CGPA
                 </span>
               </div>
