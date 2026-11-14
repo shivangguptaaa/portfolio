@@ -309,7 +309,7 @@ export default async function BuildDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* 5. Bottom Connected Project Card (Vansh Style) */}
+          {/* 5. Bottom Connected Project Card */}
           <Link href={`/builds/${note.nextProject.id}`} prefetch={true} className="next-card group">
             <div>
               <span className="label">Next build notes</span>

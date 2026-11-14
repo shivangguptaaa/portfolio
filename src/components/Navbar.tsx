@@ -66,7 +66,7 @@ export function Navbar({
           SHIVANG GUPTA
         </Link>
 
-        {/* 2-Bar Animated Burger Button matching Vansh Arora (.burger.x) */}
+        {/* 2-Bar Animated Burger Button (.burger.x) */}
         <div ref={menuRef} className="relative">
           <button
             type="button"

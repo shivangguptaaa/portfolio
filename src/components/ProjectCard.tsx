@@ -67,7 +67,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </ul>
         </div>
 
-        {/* Safety Limits & Refusals (Vansh Arora "AI that knows its limits" philosophy) */}
+        {/* Safety Limits & Refusals */}
         {(project.whatItRefuses || project.refusals || []).length > 0 && (
           <div className="mt-5 rounded-xl border border-[var(--line)] bg-[var(--paper)] p-3.5">
             <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-[var(--fg)] uppercase tracking-wide">
