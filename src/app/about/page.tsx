@@ -157,7 +157,7 @@ export default function AboutPage() {
         </div>
 
         {/* 2. Main Two-Column About Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-6 items-start">
           {/* Left Column: Profile Card & Real Photo Box (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
             <aside className="rounded-2xl border border-[var(--line-strong)] bg-[var(--surface)] p-6 shadow-xl">
