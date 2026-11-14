@@ -48,11 +48,11 @@ export function Hero({ onOpenTerminal }: HeroProps) {
         {/* Left Column: Headline, Bio & CTAs (7 cols) */}
         <div className="lg:col-span-7">
           <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[var(--fg)] leading-[0.92]">
-            AI THAT KNOWS ITS <em className="text-[var(--accent)] not-italic font-black">LIMITS.</em>
+            BUILDING BEYOND THE <em className="text-[var(--accent)] not-italic font-black">ORDINARY.</em>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-[var(--muted)] max-w-2xl font-sans">
-            I’m <strong className="text-[var(--fg)]">Shivang Gupta</strong>, a final-year computer science engineering student at JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>) and Top 10 Smart India Hackathon Finalist. I build production-grade full-stack web platforms, cloud architectures, and automated data pipelines.
+            I’m <strong className="text-[var(--fg)]">Shivang Gupta</strong>, a final-year computer science engineering student at JECRC Foundation, building at the intersection of full-stack development and AI. With a strong foundation in software engineering and problem-solving, I develop scalable web applications, intelligent systems, and practical solutions to real-world problems.
           </p>
 
           {/* Action CTAs */}
