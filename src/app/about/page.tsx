@@ -198,8 +198,11 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Building</dt>
-                  <dd className="font-semibold text-[var(--fg)] mt-0.5">Aegis Disaster Platform & NeuralFocus BCI</dd>
+                  <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Status</dt>
+                  <dd className="font-semibold text-[var(--fg)] flex items-center gap-1.5 mt-0.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                    <span>Building Aegis</span>
+                  </dd>
                 </div>
                 <div>
                   <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Fastest reply</dt>
