@@ -56,13 +56,13 @@ const PRESETS: QueryPreset[] = [
   },
   {
     id: "cgpa",
-    label: "Is Shivang's 9.22 CGPA real?",
+    label: "Is Shivang's 9.16 CGPA real?",
     query: "Verify Shivang Gupta's academic credentials and JECRC Foundation performance.",
     trace: {
       plan: "Querying verified institutional transcripts and academic milestone records.",
       call: "academic_records.fetch({ student: 'Shivang Gupta', college: 'JECRC Foundation' })",
-      result: "Verified: B.Tech Computer Science & Engineering, Cumulative Grade Point Average: 9.22 / 10.0.",
-      answer: "Yes, verified. Shivang Gupta is in his final year of B.Tech CSE at JECRC Foundation, Jaipur, maintaining a cumulative CGPA of 9.22/10.0.",
+      result: "Verified: B.Tech Computer Science & Engineering, Cumulative Grade Point Average: 9.16 / 10.0.",
+      answer: "Yes, verified. Shivang Gupta is in his final year of B.Tech CSE at JECRC Foundation, Jaipur, maintaining a cumulative CGPA of 9.16/10.0.",
       refused: false
     }
   }

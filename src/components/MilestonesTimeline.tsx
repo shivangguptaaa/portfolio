@@ -19,7 +19,7 @@ const MILESTONES: MilestoneItem[] = [
     when: "Aug 2023",
     title: "B.Tech in Computer Science",
     org: "JECRC Foundation, Jaipur",
-    description: "Started B.Tech CSE. Maintained academic excellence with a current cumulative CGPA of 9.22.",
+    description: "Started B.Tech CSE. Maintained academic excellence with a current cumulative CGPA of 9.16.",
   },
   {
     when: "Mar 2024",

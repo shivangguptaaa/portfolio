@@ -100,16 +100,14 @@ export function Hero({ onOpenTerminal }: HeroProps) {
 
             {/* Card Main: Avatar + Name */}
             <div className="mt-4 flex items-center gap-4">
-              {/* Photo Box */}
+              {/* Photo Box: Face Zoom Headshot without CGPA */}
               <div className="h-24 w-20 shrink-0 rounded-xl border border-[var(--line-strong)] bg-[var(--surface-2)] overflow-hidden relative group">
                 <img
                   src="/images/shivang.jpg"
                   alt="Shivang Gupta"
-                  className="w-full h-full object-cover object-top grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
+                  style={{ transform: "scale(2.2)", transformOrigin: "50% 30%" }}
+                  className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
                 />
-                <span className="absolute bottom-1 left-1 right-1 rounded bg-black/85 px-1 py-0.5 text-[9px] font-mono text-white text-center font-bold tracking-tight backdrop-blur-xs">
-                  9.22 CGPA
-                </span>
               </div>
 
               {/* Name & Title */}

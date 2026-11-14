@@ -55,7 +55,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     {
       category: "Pages",
       title: "About Shivang (/about)",
-      subtitle: "Narrative, 3 internships, education 9.22 CGPA, leadership",
+      subtitle: "Narrative, 3 internships, education 9.16 CGPA, leadership",
       action: () => {
         router.push("/about");
         onClose();

@@ -108,7 +108,7 @@ export default function AboutPage() {
     {
       code: "CSE",
       degree: "B.Tech, Computer Science and Engineering",
-      org: "JECRC Foundation, Jaipur · Current CGPA 9.22",
+      org: "JECRC Foundation, Jaipur · Current CGPA 9.16",
       when: "2023 – 2027 (Final Year)",
       isCurrent: true,
     },
@@ -145,7 +145,7 @@ export default function AboutPage() {
       <main className="flex-1 mx-auto max-w-[1360px] w-full px-4 py-8 sm:px-6">
         {/* 1. Interactive Canvas Glyph Header */}
         <div className="border-b border-[var(--line)] pb-4 mb-10">
-          <InteractiveGlyph text="ABOUT" subtext="FULL STACK DEVELOPER & AI ENGINEER · JECRC CSE 9.22 CGPA" />
+          <InteractiveGlyph text="ABOUT" subtext="FULL STACK DEVELOPER & AI ENGINEER · JECRC CSE 9.16 CGPA" />
           <div className="mt-3 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
             <p className="font-mono text-xs sm:text-sm text-[var(--muted)]">
               The engineer behind the boundaries. Scalable full-stack systems, machine learning pipelines, and interactive applications.
@@ -194,7 +194,7 @@ export default function AboutPage() {
                 <div>
                   <dt className="text-[10px] uppercase tracking-wider text-[var(--muted)] font-bold">Studying</dt>
                   <dd className="font-semibold text-[var(--fg)] mt-0.5">
-                    B.Tech CSE @ JECRC Foundation (<strong className="text-[var(--accent)]">9.22 CGPA</strong>)
+                    B.Tech CSE @ JECRC Foundation (<strong className="text-[var(--accent)]">9.16 CGPA</strong>)
                   </dd>
                 </div>
                 <div>
@@ -234,13 +234,10 @@ export default function AboutPage() {
               </h2>
               <div className="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-[var(--muted)] font-sans">
                 <p>
-                  I am a final-year Computer Science Engineering undergraduate at <strong className="text-[var(--fg)]">JECRC Foundation, Jaipur</strong> maintaining a cumulative CGPA of <strong className="text-[var(--accent)]">9.22</strong>. I build scalable full-stack web applications, machine learning systems, and interactive cognitive feedback tools.
+                  I’m <strong className="text-[var(--fg)]">Shivang Gupta</strong>, a final-year Computer Science and Engineering student at <strong className="text-[var(--fg)]">JECRC Foundation, Jaipur</strong> (<strong className="text-[var(--accent)]">9.16 CGPA</strong>), with a strong academic foundation and a focus on software development and artificial intelligence. My technical interests span full-stack development, AI/ML, cloud technologies, and data science, with an emphasis on building scalable web platforms and practical solutions to real-world problems.
                 </p>
                 <p>
-                  At <strong className="text-[var(--fg)]">Smart India Hackathon (SIH 2025)</strong>, my team was selected as a <strong className="text-[var(--fg)]">Top 10 Finalist</strong> out of 250+ competing teams for developing <em>Aegis</em> — an institutional disaster preparedness platform with disaster awareness modules, quizzes, an AI chatbot, and student progress tracking.
-                </p>
-                <p>
-                  At <strong className="text-[var(--fg)]">Swaarogym Medical Devices</strong> (incubated at MIIC, MNIT Jaipur), I built an EEG-based attention monitoring system, extracting theta-beta features via Welch&apos;s method and training machine learning models that achieved 93% accuracy to power an interactive feedback game.
+                  Beyond academics, I&apos;ve gained hands-on experience through industry internships, research projects, national hackathons (including Top 10 at SIH 2025), and technical certifications. I&apos;ve also been actively involved in student leadership and social initiatives, which have shaped my approach to teamwork, problem-solving, and taking ownership of engineering challenges.
                 </p>
               </div>
             </div>

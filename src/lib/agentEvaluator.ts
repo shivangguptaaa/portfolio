@@ -136,8 +136,8 @@ export function evaluateAgentQuery(rawQuery: string): AgentTrace {
     return {
       plan: `Checking academic records and institutional milestones.`,
       call: `academic_records.fetch({ student: "Shivang Gupta" })`,
-      result: `Confirmed: B.Tech CSE, JECRC Foundation. CGPA: 9.22/10.0 (Final Year, graduating 2027). Class X: 97.0%, Class XII: 88.4%.`,
-      answer: `Shivang is currently a final-year B.Tech CSE student at JECRC Foundation with a CGPA of 9.22/10.0, graduating in 2027. He scored 97.0% in 10th and 88.4% in 12th.`,
+      result: `Confirmed: B.Tech CSE, JECRC Foundation. CGPA: 9.16/10.0 (Final Year, graduating 2027). Class X: 97.0%, Class XII: 88.4%.`,
+      answer: `Shivang is currently a final-year B.Tech CSE student at JECRC Foundation with a CGPA of 9.16/10.0, graduating in 2027. He scored 97.0% in 10th and 88.4% in 12th.`,
       refused: false,
       statusBadge: "VERIFIED FACT",
     };
@@ -220,8 +220,8 @@ export function evaluateAgentQuery(rawQuery: string): AgentTrace {
     return {
       plan: `Retrieving verified summary profile for Shivang Gupta.`,
       call: `profile_service.get_summary()`,
-      result: `Verified: Final-Year B.Tech CSE at JECRC (9.22 CGPA), SIH 2025 Top 10 Finalist, ServiceNow CAD/CSA certified.`,
-      answer: `Shivang Gupta is a final-year B.Tech CSE student at JECRC Foundation (9.22 CGPA, graduating 2027) who builds full-stack web platforms, data pipelines, and cloud applications. He was a Top 10 SIH 2025 Finalist and holds ServiceNow CAD and CSA certifications.`,
+      result: `Verified: Final-Year B.Tech CSE at JECRC (9.16 CGPA), SIH 2025 Top 10 Finalist, ServiceNow CAD/CSA certified.`,
+      answer: `Shivang Gupta is a final-year B.Tech CSE student at JECRC Foundation (9.16 CGPA, graduating 2027) who builds full-stack web platforms, data pipelines, and cloud applications. He was a Top 10 SIH 2025 Finalist and holds ServiceNow CAD and CSA certifications.`,
       refused: false,
       statusBadge: "VERIFIED FACT",
     };
@@ -243,8 +243,8 @@ export function evaluateAgentQuery(rawQuery: string): AgentTrace {
   return {
     plan: `Checking query against verified portfolio background: "${rawQuery}".`,
     call: `knowledge_perimeter.audit({ query: "${rawQuery}" })`,
-    result: `Checked against verified records: B.Tech CSE at JECRC (9.22 CGPA, graduating 2027), SIH 2025 Top 10 Finalist, ServiceNow CAD/CSA, Celebal Technologies internship.`,
-    answer: `Shivang is a final-year B.Tech CSE student at JECRC Foundation (9.22 CGPA, graduating 2027) working across Python, C++, TypeScript, JavaScript, and SQL. If a skill or credential is not part of his verified background, the system will not claim it.`,
+    result: `Checked against verified records: B.Tech CSE at JECRC (9.16 CGPA, graduating 2027), SIH 2025 Top 10 Finalist, ServiceNow CAD/CSA, Celebal Technologies internship.`,
+    answer: `Shivang is a final-year B.Tech CSE student at JECRC Foundation (9.16 CGPA, graduating 2027) working across Python, C++, TypeScript, JavaScript, and SQL. If a skill or credential is not part of his verified background, the system will not claim it.`,
     refused: false,
     statusBadge: "VERIFIED FACT",
   };

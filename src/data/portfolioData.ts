@@ -67,7 +67,7 @@ export const PERSONAL_INFO = {
 };
 
 export const NUMBERS_TICKER = [
-  { value: "9.22", label: "CGPA at JECRC" },
+  { value: "9.16", label: "CGPA at JECRC" },
   { value: "Top 10", label: "Smart India Hackathon Finalist" },
   { value: "93%", label: "EEG Research Accuracy" },
   { value: "97.5%", label: "Digit Recognition Acc" },
@@ -248,7 +248,7 @@ export const EDUCATION_LIST: Education[] = [
     institution: "JECRC Foundation",
     location: "Jaipur, Rajasthan",
     period: "2023 – 2027 (Final Year)",
-    score: "CGPA: 9.22"
+    score: "CGPA: 9.16"
   },
   {
     degree: "Senior Secondary Education (CBSE Class XII)",
