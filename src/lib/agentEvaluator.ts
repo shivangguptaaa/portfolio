@@ -232,7 +232,7 @@ export function evaluateAgentQuery(rawQuery: string): AgentTrace {
     return {
       plan: `Testing system truth perimeter against adversarial probe.`,
       call: `boundary_engine.verify_integrity()`,
-      result: `Status: Zero-hallucination perimeter active. Refuses to invent unverified credentials.`,
+      result: `Status: Verification boundary active. Refuses to invent unverified credentials.`,
       answer: `The system operates under a strict verification boundary. It will not fabricate claims or exaggerate skills beyond Shivang's verified background and published repositories.`,
       refused: true,
       statusBadge: "POLICY REFUSAL",

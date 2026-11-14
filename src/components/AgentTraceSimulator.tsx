@@ -141,7 +141,7 @@ export function AgentTraceSimulator() {
           Try To Make My Agent Lie
         </h2>
         <p className="mt-1 font-sans text-sm sm:text-base text-[var(--muted)]">
-          Zero-hallucination guarantee. Test live step-by-step reasoning traces against strict boundaries.
+          Test live step-by-step reasoning traces against strict verification boundaries.
         </p>
       </div>
 
