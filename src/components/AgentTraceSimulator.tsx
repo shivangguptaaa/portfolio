@@ -137,10 +137,10 @@ export function AgentTraceSimulator() {
           <Sparkles className="h-4 w-4" />
           <span>Interactive Audit</span>
         </div>
-        <h2 className="mt-1 font-mono text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-[var(--fg)]">
+        <h2 className="mt-1 font-display text-3xl sm:text-5xl font-black uppercase tracking-tight text-[var(--fg)]">
           Try To Make My Agent Lie
         </h2>
-        <p className="mt-1 text-sm text-[var(--muted)]">
+        <p className="mt-1 font-sans text-sm sm:text-base text-[var(--muted)]">
           Zero-hallucination guarantee. Test live step-by-step reasoning traces against strict boundaries.
         </p>
       </div>
