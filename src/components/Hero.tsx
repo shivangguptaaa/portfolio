@@ -105,7 +105,7 @@ export function Hero({ onOpenTerminal }: HeroProps) {
                 <img
                   src="/images/shivang.jpg"
                   alt="Shivang Gupta"
-                  style={{ transform: "scale(2.2)", transformOrigin: "50% 30%" }}
+                  style={{ transform: "scale(1.45) translateY(2px)", transformOrigin: "50% 10%" }}
                   className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>

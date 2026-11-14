@@ -35,7 +35,7 @@ export default function AboutPage() {
       code: "SDI",
       role: "ServiceNow Developer Intern",
       company: "ServiceNow Enterprise Platform · Jaipur, India",
-      when: "Feb 2026 – Mar 2026",
+      when: "Jan 2026 – Mar 2026",
       isCurrent: false,
       badge: "CAD & CSA Certified",
       points: [
