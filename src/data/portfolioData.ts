@@ -70,7 +70,7 @@ export const NUMBERS_TICKER = [
   { value: "9.16", label: "CGPA at JECRC" },
   { value: "Top 10", label: "Smart India Hackathon Finalist" },
   { value: "93%", label: "EEG Research Accuracy" },
-  { value: "97.5%", label: "Digit Recognition Acc" },
+  { value: "99.2%", label: "Digit Recognition Acc" },
   { value: "3rd Prize", label: "MNIT Energy Hackathon" },
   { value: "250+", label: "SIH Competing Teams" },
   { value: "9", label: "Public GitHub Repositories" },
